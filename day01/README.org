@@ -1,0 +1,69 @@
+#+TITLE: DAY 1
+
+Day 1 is all about fast and fun simulations with the focus on
+
++ the basic workflow in OpenFOAM
++ getting used to the terminal
++ meshing with the OpenFOAM internal meshing utility blockMesh
++ running simulations
++ first steps with postprocessing in Paraview
+
+* TABLE OF CONTENS :toc:
+- [[#first-simulation][FIRST SIMULATION]]
+- [[#basic-case-setup][BASIC CASE SETUP]]
+- [[#openfoam-basics][OPENFOAM BASICS]]
+- [[#session-a-getting-to-know-openfoam][SESSION A: GETTING TO KNOW OPENFOAM]]
+- [[#blockmesh-with-a-more-complicated-case][blockMesh WITH A MORE COMPLICATED CASE]]
+- [[#cavity---revisited][CAVITY - REVISITED]]
+
+* FIRST SIMULATION
+
+In this tutorial you will get a first hands-on glimpse into the workflow of CFD simulations with OpenFOAM.
+
++ basic case setup
++ initial values
++ mesh
++ simulation (2D elbow case with three meshes)
++ postprocessing
+
+* BASIC CASE SETUP
+
+Using icoFoam solver, simulate 75 s of flow in an elbow.
+
++ Basic case setup in OpenFOAM
++ Setting up initial values of p and U
++ Ensuring proper boundary definitions
+* OPENFOAM BASICS
+
+Here you will find a video on the very basics of OpenFOAM. You will hear about
+
++ OpenFOAM and what it is good for
++ the history and philosophy behind it
++ the basics and the structure.
+* SESSION A: GETTING TO KNOW OPENFOAM
+
+In this tutorial you will study
+
++ what is the history of OpenFOAM
++ the philosophy behind the OpenFOAM software
++ what is the content of the OpenFOAM software package
+* blockMesh WITH A MORE COMPLICATED CASE
+
+In this second tutorial video you will try out your knowledge about blockMesh in order to create a more complicated mesh for a simulation. The focus is on:
+
++ scaling the mesh
++ setting the vertices
++ setting volumes (blocks)
++ setting edges
++ boundaries
++ grading
+* CAVITY - REVISITED
+
+Before you already completed this tutorial a few times. Here you will be taken into the depth of an OpenFOAM case in order to understand all the important in- and outputs required for a CFD simulation in OpenFOAM.
+
++ details on OpenFOAM directory organization
++ directory structure of an application/utility
++ applications/utilities in OpenFOAM
++ directory structure of an OpenFOAM case
++ simulation workflow
++ details on the in- and output of an OpenFOAM case
