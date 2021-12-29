@@ -1,0 +1,15 @@
+#+TITLE: blockMesh With a More Complicated Case:
+
+[[https://wiki.openfoam.com/index.php?title=BlockMesh_by_Jozsef_Nagy]]
+
+You will get a detailed introduction into the dictionary describing the input of blockMesh. This time we will use a more detailed geometry of the forwardStep. You will learn about
+
++ scaling the mesh
++ setting the vertices
++ setting volumes (blocks)
++ setting edges
++ boundaries
++ grading
++ We will also run and post process the case, however the focus is on the meshing part of a CFD project.
+
+For older versions of OpenFOAM the blockMeshDict file is located in constant/polyMesh, for newer versions the file is located in system.
