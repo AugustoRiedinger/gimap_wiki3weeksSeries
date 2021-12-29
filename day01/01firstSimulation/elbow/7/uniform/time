@@ -5,42 +5,26 @@
     \\  /    A nd           | Version:  9
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
-FoamFile {
-  format ascii;
-  class dictionary;
-  location "system";
-  object controlDict;
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "7/uniform";
+    object      time;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application icoFoam;
+beginTime       0;
 
-startFrom latestTime;
+value           6.99999999999998312;
 
-startTime 0;
+name            "7";
 
-stopAt endTime;
+index           140;
 
-endTime 75;
+deltaT          0.05;
 
-deltaT 0.05;
+deltaT0         0.05;
 
-writeControl timeStep;
-
-writeInterval 20;
-
-purgeWrite 0;
-
-writeFormat ascii;
-
-writePrecision 6;
-
-writeCompression off;
-
-timeFormat general;
-
-timePrecision 6;
-
-runTimeModifiable true;
 
 // ************************************************************************* //
