@@ -1,0 +1,109 @@
+#+TITLE: OpenFOAM's Wiki 3 Weeks Series
+#+AUTHOR: A. Riedinger
+
+In this series you will have the possibility to get a more detailed understanding of the basics of OpenFOAM. You will be able to complete it in about three weeks. It is understandable, that you are exited. Everybody is, but please do not work on the weekends. Breaks are important for the learning process. This is the reason, why the tutorials are divided into fifteen days (see figure below). Do not skip the weekends! Some time without OpenFOAM is also important
+
+* Series overview:
+
+** Day 1:
+
+On Day 1 you will start to get familiar with OpenFOAM. Just follow the instructions step by step and familiarize yourself with the concept of OpenFOAM, Linux, the terminal and working with dictionaries.
+
++ basic workflow in OpenFOAM
++ getting used to the terminal
++ meshing with the OpenFOAM internal meshing utility blockMesh
++ running simulations
++ first steps with postprocessing in Paraview
+** Day 2:
+
+On Day 2 you will continue with your first steps. You will get an even deeper understanding and learn the work flow of OpenFOAM with a special focus on visualization of results.
+
++ more detailed understanding of the work flow
++ further short and fun simulations
++ grid convergence
++ transport equations
++ detailed scientific visualization of results
+** Day 3:
+
+On Day 3 you will digest all the information from the previous days by listening to a talk on the basics of OpenFOAM.
+
+** Day 4:
+
+On Day 4 you will understand the theory behind OpenFOAM by taking a detailed look at the discretization of the equations and the numerical settings. We will cover a big theoretical area about
+
++ gradient scheme
++ gradient limiter
++ convection discretization
++ face interpolation
++ diffusion discretization
++ influence of discretization on the simulation results
++ CFL number
++ linear solvers
++ solution methods
+** Day 5:
+
+Day 5 is there to round off the week with some fun simulations. Also we give you links to some interesting documents, which can help you solve your problems in OpenFOAM in the future.
+
+** Day 6:
+
+Day 6 is all about meshing. In order to be able to run simulation for real life problems, you have to understand how to create an arbitrary high quality mesh and which alternatives you have in OpenFOAM. For this you will learn about
+
++ geometry creation
++ mesh generation
+** Day 7:
+
+On Day 7 we will talk about turbulence modeling, as this is one of the most important aspects in a CFD simulation. It is important to understand the models as well as the difference between them ion order to choose the correct one for a given problem. Here we will cover the following topics:
+
++ steady-state turbulence modeling
++ transient turbulence modeling
++ Reynolds-Averaged Navier-Stokes equations
++ Large Eddy Simulations
++ initial and boundary conditions
++ case setup
+
+
+** Day 8:
+
+On day 8 we continue our investigation of turbulence modeling by doing extensive parameter studies to understand the idea behind turbulence modeling, the difference between models and the actual application. After this day you will be able to choose the correct model for your own problem.
+
+
+** Day 9:
+
+On Day 9 we will start another important topic in CFD, multiphase modeling. It is important to understand the additional physics involved to correctly set up the simulation case and to run the simulation. We will take a look at the available models and focus on the Volume-Of-Fluid Method and run several simulations to fully understand the theory and to gain experience in the simulations.
+
+
+** Day 10:
+
+On Day 10 we will take a look at the possibility to parallelize simulations in OpenFOAM. This is important, as high-quality simulation setups tend to be computationally very intensive. In order to reduce computation time, you will learn about
+
++ the idea of parallelization
++ domain decomposition
++ steps of parallelization
++ postprocessing parallel results
+** Day 11:
+
+On Day 11 we will take a look at programming. Today is all about the initial steps. By now you should be able to run simulations of real life problems with OpenFOAM. In some cases models might not be implemented in the source code. OpenFOAM offers through an open source code the possibility to add models to the existing code. This might be a challenging task, but with the following tutorials, you will get a basic understanding of the work flow.
+
+** Day 12:
+
+On day 12 we will further explore the programming possibilities OpenFOAM offers to extend the source code according to our needs. First we start with a video of Professor Jasak on programming. Can you follow the other two tutorials after that?
+
+
+** Day 13:
+
+Although you already programmed applications the days before, on Day 13 we take a look at the basics of C++ and start with simple examples, so you can view them from a C++ perspective.
+
+
+** Day 14:
+
+Today we continue with programming. There is only one tutorial, but this tutorial consist of multiple examples and explains a lot.
+
+
+** Day 15:
+
+On Day 15 we finalize our 3-weeks-series by doing a fun programming simulation and going through a couple of pages of pdf.
+
+
+** End of the 3-weeks-series:
+
+We reached the end of Day 15 and with that the end of the 3-weeks-series. Now, now... Let's not get emotional here. Let's think about all the great challenges and successes in your CFD career with OpenFOAM and look forward to the future.
