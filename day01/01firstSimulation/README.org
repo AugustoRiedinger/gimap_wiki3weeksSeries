@@ -1,0 +1,21 @@
+#+TITLE: First simulation in OpenFOAM
+
+You will learn about:
+
++ the basic case setup of OpenFOAM
++ the initial values of your simulation
++ the mesh (e.g. the boundaries)
++ running the simulation of the flow in a 2D elbow case with three different meshes
++ post processing
+
+  You will familiarize yourself with the terminal in Linux, where you will run all your simulations in OpenFOAM. You will also get a first idea on the work flow that you have to follow in order to run a successful simulation.
+
+* Setting up the environment:
+
+Fist, copy the elbow tutorial from:
+
+#+begin_src bash
+/opt/OpenFOAM/OpenFOAM-v9/tutorials/incompressible/icoFoam/elbow
+#+end_src
+
+to your working directory.
