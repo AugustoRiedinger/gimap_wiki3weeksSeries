@@ -38,3 +38,26 @@ The simulation can be run by typing the solver's name and executing:
 #+end_src
 
 For running the simulation and the solver command (e.g. icoFoam) should be executed inside the copy of the tutorial main folder. For example: the command should be executed in the elbow folder, if it was run at some subfolders or somewhere else, the simulation will fail.
+* Post-processing:
+
+The data files created by OpenFOAM should be exported (converted) by the appropiate tools, to the post processing data format. For ParaView:
+
+#+begin_src bash
+>foamToVTK
+#+end_src
+
+where VTK is the ParaView data format. This command should be also executed in  the case main directory, e.g. elbow. Here, ParaView is used as the post-processing tool. For running ParaView, first create an empty file
+
+#+begin_src bash
+>touch open.foam
+#+end_src
+
+for ParaView to read. Then, open it in the background with:
+
+#+begin_src bash
+>paraview open.foam &
+#+end_src
+
+Here we can see the velocity at the endTime:
+
+[[file:elbow/images/images.0074.png]]
