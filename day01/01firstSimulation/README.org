@@ -19,3 +19,54 @@ Fist, copy the elbow tutorial from:
 #+end_src
 
 to your working directory.
+
+Then, convert the GAMBIT mesh to something compatible with OpenFOAM. For that we use:
+
+#+begin_src bash
+>fluentMeshToFoam elbow.msh
+#+end_src
+
+#+RESULTS:
+
+Now, in /system/controlDict/ we change the simulation time from 10 to 75. For this, we edit the variable /endTime/.
+
+#+PROPERTY: header-args :tangle elbow/system/controlDict
+#+begin_src C++
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+
+application     icoFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         75;
+
+deltaT          0.05;
+
+writeControl    timeStep;
+
+writeInterval   20;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+#+end_src
