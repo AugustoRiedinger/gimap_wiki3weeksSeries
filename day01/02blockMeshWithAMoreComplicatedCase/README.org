@@ -1,4 +1,7 @@
 #+TITLE: blockMesh With a More Complicated Case:
+#+PROPERTY: header-args :tangle yes
+
+* ABOUT:
 
 [[https://wiki.openfoam.com/index.php?title=BlockMesh_by_Jozsef_Nagy]]
 
@@ -10,6 +13,32 @@ You will get a detailed introduction into the dictionary describing the input of
 + setting edges
 + boundaries
 + grading
-+ We will also run and post process the case, however the focus is on the meshing part of a CFD project.
 
-For older versions of OpenFOAM the blockMeshDict file is located in constant/polyMesh, for newer versions the file is located in system.
+We will also run and post process the case, however the focus is on the meshing part of a CFD project.
+
+Remeber that for older versions of OpenFOAM the blockMeshDict file is located in constant/polyMesh, for newer versions the file is located in system.
+
+* TABLE OF CONTENTS :toc:
+- [[#about][ABOUT:]]
+- [[#using-rhopimplefoam-solver][Using rhoPimpleFoam solver:]]
+  - [[#setting-up-the-case][Setting up the case:]]
+
+* Using rhoPimpleFoam solver:
+/rhoPimpleFoam/ is a transient solver. It solves trans-sonic/supersonic flow of a compressible gas/fluid. The objectives are as following:
+
++ Understand /blockMesh/.
++ Define vertices via coordinates as well as surfaces and volumes via vertices.
++ Data processing:
+  + Import your simulation into ParaView and examine the mesh and results in detail.
+
+** Setting up the case:
+*** Copying tutorial:
+:PROPERTIES:
+:header-args: :tangle setup
+:END:
+
+We copy the tutorial from the following folder to the current working directory:
+
+#+begin_src bash
+cp -r $FOAM_TUTORIALS/compressible/rhoPimpleFoam/laminar/forwardStep/ .
+#+end_src

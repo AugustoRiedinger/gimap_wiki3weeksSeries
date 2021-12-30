@@ -26,8 +26,6 @@ Then, convert the GAMBIT mesh to something compatible with OpenFOAM. For that we
 >fluentMeshToFoam elbow.msh
 #+end_src
 
-#+RESULTS:
-
 Now, in /system/controlDict/ we change the simulation time from 10 to 75. For this, we edit the variable /endTime/.
 * Running the simulation:
 
