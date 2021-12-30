@@ -1,0 +1,50 @@
+#+TITLE: Understanding Grid Convergence
+#+AUTHOR: A. Riedinger
+#+PROPERTY: :header-tags :tangle yes
+
+* Table of contents :toc:
+- [[#about][About:]]
+- [[#background][Background:]]
+  - [[#initial-and-boundary-conditions][Initial and boundary conditions:]]
+  - [[#courant-friedrichs-lewy-cfl-condition][Courant-Friedrichs-Lewy (CFL) condition:]]
+
+* About:
+https://wiki.openfoam.com/index.php?title=Grid_convergence_by_Jozsef_Nagy
+
+We will cover one of the basic concepts in OpenFOAM. The resolution of your mesh might have an influence onto the results of your simulation. This tutorial will give you a feeling about the importance of grid resolution and how to avoid deviations caused by coarse grid resolution. We will cover
+
++ field initialization with setFields
++ mesh refinement with blockMesh
++ simulation of a 1D shock tube case
++ influence of mesh refinement on the simulation results
++ post processing
+
+For older versions of OpenFOAM the blockMeshDict file is located in constant/polyMesh, for newer versions the file is located in system.
+
+Newer versions of OpenFOAM do not use the sample command, instead you can use postProcess -func sample.
+
+* Background:
+
+** Initial and boundary conditions:
+
+Before running the numerical solver, it is important to set up initial and boundary conditions  correctly for the problem. Ill-defined boundary conditions will result in non-convergence or  incorrect results.
+
+The initial conditions provide the starting values for the solver and once specified, the value is put  into the center of every cell in the whole domain. As the solver starts to run, the initial values will  be replaced by newly calculated values. Any starting values can be used for 1st iteration. However  the better the initial values, the faster the convergence. Initial conditions are mandatory for transient  problems, but not absolutely required for steady state problems.
+
+On the other hand we need to also provide boundary conditions. These will connect the simulation  models with its surroundings. The values specified are located at the boundary faces of the domain,  where their solution will be kept unchanged during the simulation, as the solver will not calculate  them. Most boundary conditions are either steady state or transient.
+
+In OpenFOAM®, we can use the setFields utility to specify a non-uniform initial condition, and this  will be the focus of Tutorial Three. In addition, the boundary conditions are specified in the files in the /0/ directory.
+
+** Courant-Friedrichs-Lewy (CFL) condition:
+
+In this tutorial, we will create meshes with 100, 1000 and 10000 cells in one dimension. However,  one cannot simply increase the number of cells (i.e. decrease the cell size) without changing the  time step size accordingly. This is because when running a numerical scheme (e.g. the Gauss linear  scheme; more details can be found in Tutorials Four and Five), the solution is reached using the  information propagated by waves or particles from one cell to the adjacent cell. To ensure a  physical solution it is essential that the physical flow information e.g. velocity, composition, etc. is  received by all cells within the calculation domain. It needs to be guaranteed that the information  transport does not “overtake” the physical transport, otherwise the scheme will be unable to access  the information required to form the solution.
+
+The above criteria is known as the Courant-Friedrichs-Lewy (CFL) condition, and it is a necessary condition for convergence. For one-dimensional problems, it can be written as:
+
+\begin{equation}
+   C_o = \frac{\mu \Delta t}{\Delta x} \leq 1
+\end{equation}
+
+The key dimensionless number here is the Courant number, $C_o$, which need to be less or equal to one.
+
+As it is obvios from the equation, by decreasing the mesh size (i.e. $\Delta x$), the time step size $\Delta t$ should also be adjsuted (decreased) for reaching a stable and convergent solution. Therefore the CFL condition i suseful in helping us choose a suitable time step size for our simulation. A common way of selecting the time step size is to keep the Courant number at 1, using the maximum possible $\mu$ and the smallest possible mesh size, and a $Delta t$ that fits the criteria can be calculated.
