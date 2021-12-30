@@ -44,19 +44,19 @@ Then, extract it in your working directory wit /tar/:
 tar xvf cavity2D.tar.gz && rm cavity2D.tar.gz
 #+end_src
 
-Then going into the case directory, we have to create and check the mesh:
+Then going into the case directory, we have to create and check the mesh. It's good practice to save the output of the commands into a /log file/. For this, we'll use the /tee/ command.
 
 #+begin_src bash
 cd cavity2D
-blockMesh
-checkMesh
+blockMesh | tee log.blockMesh
+checkMesh | tee log.checkMesh
 #+end_src
 
 Then, we can create a dummy file to store the data and run the solver:
 
 #+begin_src bash
 touch open.foam
-icoFoam
+icoFoam | tee log.icoFoam
 #+end_src
 
 And we can observe the resuts with ParaView:

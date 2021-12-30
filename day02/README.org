@@ -1,0 +1,85 @@
+#+TITLE: Day 2
+#+AUTHOR: A. Riedinger
+
+* Table of contents :toc:
+- [[#about][About:]]
+  - [[#grid-convergence][Grid convergence:]]
+  - [[#transport-equations][Transport equations:]]
+  - [[#taylor-couette-flow][Taylor Couette flow:]]
+  - [[#residence-time-distribution][Residence time distribution:]]
+  - [[#scientific-visualization-with-paraview][Scientific visualization with ParaView:]]
+  - [[#sampling][Sampling:]]
+  - [[#auxiliary-postprocessing][Auxiliary Postprocessing:]]
+
+* About:
+
+[Day 2][https://wiki.openfoam.com/index.php?title=Day_2]
+
+Welcome back to Day 2. Today is all about widening and extending our experience in OpenFOAM. Yesterday we learned a lot about the basic work flow and simple mesh creation, today we will start going into the depth of OpenFOAM and go through the entire CFD workflow until postprocessing. We will focus in
+
++ more detailed understanding of the work flow
++ further short and fun simulations
++ grid convergence
++ transport equations
++ detailed scientific visualization of results
+
+** Grid convergence:
+
+By now, you should be familiar to the basics of OpenFOAM. Let us continue with some general CFD topics, still covered in OpenFOAM. In this video you will learn the importance of grid resolution and its effect onto your results.
+
++ field initialization with setFields
++ mesh refinement with blockMesh
++ simulation of a 1D shock tube case
++ influence of mesh refinement on the simulation results
++ postprocessing
+
+** Transport equations:
+
+Another important general topic is the general transport equation. Here, you will get a basic idea on the structure of the equations, which are solved in CFD and also in OpenFOAM.
+
++ the solver
++ case setup
++ transport phenomena like convection and diffusion
++ influence of constants
++ simulation of scalar transport
++ post processing
+
+** Taylor Couette flow:
+
+In this short tutorial you will experience your first steady state simulation, where you can directly compare your results with experiments from literature. Here the focus will be on:
+
++ case, geometry and mesh setup
++ boundary conditions
++ steady state simulation
++ solution evaluation and post processing
++ comparison with theory and experiments from literature
+
+** Residence time distribution:
+
+Use the simpleFoam and scalarTransportFoam to simulate the flow through a square cross section T pipe and calculate RTD (Residence Time Distribution) for both inlets using a step function injection.
+
++ Understanding RTD calculation using OpenFOAM
++ Using multiple solver for a simulation
+
+** Scientific visualization with ParaView:
+
+In this tutorial you will get a deep understanding on the scientific postprocessing and visualization of results in Paraview.
+
+The following topics will be covered:
+
++ Postprocessing
++ ParaView in a nutshell
++ ParaView vs. paraFoam
++ ParaView GUI overview
++ Basic usage – Sources and filters
++ Scientific visualization with paraFoam/ParaView
+
+** Sampling:
+
+Simulate the flow along a shock tube for 0.007 s and use OpenFOAM sampling utility for extracting the data along a line during the simulation and after the simulation.
+
++ Understand the function of sampling and how to use the sampling utility
+
+** Auxiliary Postprocessing:
+
+In this tutorial your will find useful information on how to postprocess your simulation results with the tools swak4Foam and PyFoam.
