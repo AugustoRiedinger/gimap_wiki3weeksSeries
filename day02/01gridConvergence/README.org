@@ -7,6 +7,9 @@
 - [[#background][Background:]]
   - [[#initial-and-boundary-conditions][Initial and boundary conditions:]]
   - [[#courant-friedrichs-lewy-cfl-condition][Courant-Friedrichs-Lewy (CFL) condition:]]
+- [[#simulation][Simulation:]]
+  - [[#pre-processing][Pre-processing:]]
+  - [[#mesh-with-1000-cells][Mesh with 1000 cells:]]
 
 * About:
 https://wiki.openfoam.com/index.php?title=Grid_convergence_by_Jozsef_Nagy
@@ -22,7 +25,6 @@ We will cover one of the basic concepts in OpenFOAM. The resolution of your mesh
 For older versions of OpenFOAM the blockMeshDict file is located in constant/polyMesh, for newer versions the file is located in system.
 
 Newer versions of OpenFOAM do not use the sample command, instead you can use postProcess -func sample.
-
 * Background:
 
 ** Initial and boundary conditions:
@@ -48,3 +50,141 @@ The above criteria is known as the Courant-Friedrichs-Lewy (CFL) condition, and 
 The key dimensionless number here is the Courant number, $C_o$, which need to be less or equal to one.
 
 As it is obvios from the equation, by decreasing the mesh size (i.e. $\Delta x$), the time step size $\Delta t$ should also be adjsuted (decreased) for reaching a stable and convergent solution. Therefore the CFL condition i suseful in helping us choose a suitable time step size for our simulation. A common way of selecting the time step size is to keep the Courant number at 1, using the maximum possible $\mu$ and the smallest possible mesh size, and a $Delta t$ that fits the criteria can be calculated.
+* Simulation:
+
+Use the /rhoPimpleFoam/ solver; simulate 0.007 seconds of flow inside a shock tube, with a mesh with 100, 1000 and 10000 cell in one dimension, for initial values 1 bar/0.1 bar and 10 bar/o.1 bar.
+
+*Obejectives*:
+
++ To understand the /setFields/ utility.
++ Learn how to specify initial and boundary conditions.
++ Investigate effect of grid resolution.
+
+*Data processing*:
+
++ Import your simulation into ParaView, and compare results.
+
+** Pre-processing:
+
+*** Open tutorial:
+:PROPERTIES:
+:header-args: :tangle preprocessing
+:END:
+
+Copy the tutorial from the folling directory to your working directory:
+
+#+begin_src bash
+cp -r $FOAM_TUTORIALS/compressible/rhoPimpleFoam/laminar/shockTube/ .
+#+end_src
+
+** Mesh with 1000 cells:
+
+*** Pre-processing - Editing blockMeshDict:
+:PROPERTIES:
+:header-args: :tangle 01shockTube_1000/system/blockMeshDict
+:END:
+
+We will edit the first file in /01shockTube_1000/system/blockMeshDict/:
+
+#+begin_src C++
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+convertToMeters 1;
+#+end_src
+
+After leaving the vertices (wich define the mesh) as a default:
+
+#+begin_src C++
+vertices
+(
+    (-5 -1 -1)
+    (5 -1 -1)
+    (5 1 -1)
+    (-5 1 -1)
+    (-5 -1 1)
+    (5 -1 1)
+    (5 1 1)
+    (-5 1 1)
+);
+#+end_src
+
+We will take a look at the /blocks/ section:
+
+#+begin_src C++
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (1000 1 1) simpleGrading (1 1 1)
+);
+#+end_src
+
+Here we can see that the number of mesh cell in the /y/ and /z/ direction is one (1D mesh), so what we look at is the /x/. The default number of cells in the mesh 1000 for the /x/ direction, wich is what we need for the first case, so we leave it as it is.
+
+The rest of the file remains the same:
+
+#+begin_src C++
+edges
+(
+);
+
+boundary
+(
+    sides
+    {
+        type patch;
+        faces
+        (
+            (1 2 6 5)
+            (0 4 7 3)
+        );
+    }
+    empty
+    {
+        type empty;
+        faces
+        (
+            (0 1 5 4)
+            (5 6 7 4)
+            (3 7 6 2)
+            (0 3 2 1)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+#+end_src
+*** Running the simulation:
+:PROPERTIES:
+:header-args: :tangle 01shockTube_1000/run
+:END:
+
+First, the mesh needs to be created:
+
+#+begin_src bash
+blockMesh | tee log.blockMesh
+#+end_src
+
+In order to assign the default values for pressure, temperature and velocity which were set in the /setFieldsDict/:
+
+#+begin_src bash
+setFields | tee log.setFields
+#+end_src
+
+We now create a dummy file:
+
+#+begin_src bash
+touch open.foam
+#+end_src
+
+And execute the solver to run the simulation:
+
+#+begin_src bash
+rhoPimpleFoam | tee log.rhoPimpleFoam
+#+end_src
+*** Post-processing - Results:
