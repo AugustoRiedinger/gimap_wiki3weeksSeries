@@ -1,0 +1,66 @@
+#+TITLE: The driven cavity case - Revisited
+#+AUTHOR: A. Riedinger
+#+PROPERTY: :header-args :tangle yes
+
+* Table of contents :toc:
+- [[#about][About:]]
+  - [[#what-are-we-going-to-do][What are we going to do?]]
+- [[#case-setup][Case setup:]]
+
+* About:
+[[https://wiki.openfoam.com/index.php?title=Cavity_by_Joel_Guerrero]]
+
+We revisit the classical driven cavity case and we dissect every single dictionary of the case directory. You will learn about,
+
++ Directory structure of an OpenFOAM case
++ Simulation workflow
++ Saving log files
++ How to control the simulation
++ Understanding the screen output
++ Basic post-processing with paraFoam
++ Basic meshing with blockMesh
++ Monitoring the solution
++ How to interpret errors
++ Sampling and plotting
+
+** What are we going to do?
+
++ We will use the lid-driven square cavity tutorial as a general example to show you how to set up  and run solvers and utilities in OpenFOAM®.
++ In this tutorial we are going to generate the mesh using blockMesh.
++ After generating the mesh, we will look for topological errors and assess the mesh quality.  For  this we use the utility checkMesh.  Later on, we are going to talk about what is a good mesh.
++ Then, we will find the numerical solution using icoFoam, which is a transient solver for  incompressible, laminar flow of Newtonian fluids. By the way, we hope you did not forget where  to look for this information.
++ And we will finish with some quantitative post-processing and qualitative visualization using  paraFoam and OpenFOAM® utilities.
++ While we run this case, we are going to see a lot of information on the screen (standard output  stream or stdout), but it will not be saved.  This information is mainly related to convergence of  the simulation, we will talk about this later on.
++ A final word, we are going to use the solver icoFoam but have in mind that this is a very basic  solver with no modeling capabilities and limited post-processing features.
++ Therefore, is better to use pisoFoam or pimpleFoam which are equivalent to icoFoam but with many more features.
+
+* Case setup:
+
+Download the case from the following link: http://www.wolfdynamics.com/wiki/cavity2D.tar.gz
+
+Then, extract it in your working directory wit /tar/:
+
+#+begin_src bash
+tar xvf cavity2D.tar.gz && rm cavity2D.tar.gz
+#+end_src
+
+Then going into the case directory, we have to create and check the mesh:
+
+#+begin_src bash
+cd cavity2D
+blockMesh
+checkMesh
+#+end_src
+
+Then, we can create a dummy file to store the data and run the solver:
+
+#+begin_src bash
+touch open.foam
+icoFoam
+#+end_src
+
+And we can observe the resuts with ParaView:
+
+#+begin_src bash
+paraview open.foam
+#+end_src
