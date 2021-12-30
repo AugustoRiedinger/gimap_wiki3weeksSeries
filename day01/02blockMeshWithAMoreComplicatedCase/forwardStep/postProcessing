@@ -1,0 +1,3 @@
+touch open.foam
+
+paraview open.foam

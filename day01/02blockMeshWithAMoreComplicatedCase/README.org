@@ -22,6 +22,8 @@ Remeber that for older versions of OpenFOAM the blockMeshDict file is located in
 - [[#about][ABOUT:]]
 - [[#using-rhopimplefoam-solver][Using rhoPimpleFoam solver:]]
   - [[#setting-up-the-case][Setting up the case:]]
+  - [[#running-the-simulation][Running the simulation:]]
+  - [[#post-processing][Post processing:]]
 
 * Using rhoPimpleFoam solver:
 /rhoPimpleFoam/ is a transient solver. It solves trans-sonic/supersonic flow of a compressible gas/fluid. The objectives are as following:
@@ -42,3 +44,46 @@ We copy the tutorial from the following folder to the current working directory:
 #+begin_src bash
 cp -r $FOAM_TUTORIALS/compressible/rhoPimpleFoam/laminar/forwardStep/ .
 #+end_src
+
+** Running the simulation:
+:PROPERTIES:
+:header-args: :tangle forwardStep/run
+:END:
+
+Before running the simulation, the mesh has to be created. In the previous step, the mesh and the geometry data were set. For creating ir the following command should be exceuted from the case main directory:
+
+#+begin_src bash
+blockMesh
+#+end_src
+
+After that, the mesh is created in the /constant/polyMesh/ folder. For running the simulation, type the solver name from the case directory and exceute it:
+
+#+begin_src bash
+rhoPimpleFoam
+#+end_src
+** Post processing:
+:PROPERTIES:
+:header-args: :tangle forwardStep/postProcessing
+:END:
+
+First, we create a dummy file:
+
+#+begin_src bash
+touch open.foam
+#+end_src
+
+And to open the results in ParaView:
+
+#+begin_src bash
+paraview open.foam
+#+end_src
+
+Here we can see the mesh and the three blocks which were created:
+
+[[file:forwardStep/images/mesh.png]]
+
+When a cut is created by default in ParaView, the program shows the mesh on that plane as a  triangular mesh even if it is a hex mesh. In fact, ParaView changes the mesh to a triangular mesh  for visualization, where every square is represented by two triangles. For avoiding this when
+
+The simulation results are as follows:
+
+[[file:forwardStep/images/results.png]]
