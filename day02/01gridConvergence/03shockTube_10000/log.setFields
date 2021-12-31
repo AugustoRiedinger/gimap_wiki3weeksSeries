@@ -1,0 +1,39 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-c8374a4890ad
+Exec   : setFields
+Date   : Dec 30 2021
+Time   : 22:43:04
+Host   : "endeavouros"
+PID    : 1195880
+I/O    : uncollated
+Case   : /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day02/01gridConvergence/03shockTube_10000
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading "setFieldsDict"
+
+Setting field default values
+    Setting internal values of volVectorField U
+    Setting internal values of volScalarField T
+    Setting internal values of volScalarField p
+
+Setting field region values
+    Adding cells with center within boxes 1((0 -1 -1) (5 1 1))
+    Setting internal values of volScalarField T
+    Setting internal values of volScalarField p
+
+End
+

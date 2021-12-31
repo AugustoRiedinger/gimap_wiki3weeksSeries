@@ -1,0 +1,4 @@
+blockMesh | tee log.blockMesh
+setFields | tee log.setFields
+touch open.foam
+rhoPimpleFoam | tee log.rhoPimpleFoam

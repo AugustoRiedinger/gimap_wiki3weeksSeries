@@ -10,7 +10,8 @@
 - [[#simulation][Simulation:]]
   - [[#pre-processing][Pre-processing:]]
   - [[#mesh-with-1000-cells][Mesh with 1000 cells:]]
-  - [[#mesh-with-100-blocks][Mesh with 100 blocks:]]
+  - [[#mesh-with-100-cells][Mesh with 100 cells:]]
+  - [[#mesh-with-10000-cells][Mesh with 10000 cells:]]
 
 * About:
 https://wiki.openfoam.com/index.php?title=Grid_convergence_by_Jozsef_Nagy
@@ -225,7 +226,7 @@ And the same can be done for /U/ and /T/.
 [[file:01shockTube_1000/images/U.mp4]]
 #+CAPTION: Velocity with a 1000 blocks mesh
 
-** Mesh with 100 blocks:
+** Mesh with 100 cells:
 *** Pre-processing - Editing blockMeshDict:
 :PROPERTIES:
 :header-args: :tangle 02shockTube_100/system/blockMeshDict
@@ -319,7 +320,167 @@ We open the dummy file /open.foam/ with ParaView like the previous case. We can 
 Then, we export the images for /p/, /U/ and /T/ and make videos from them:
 
 [[file:02shockTube_100/images/p.mp4]]
+
 file:02shockTube_100/images/U.mp4
+
 file:02shockTube_100/images/T.mp4
 
 We can see the difference in the animations.
+** Mesh with 10000 cells:
+*** Pre-processing:
+**** Editing blockMeshDict:
+:PROPERTIES:
+:header-args: :tangle 03shockTube_10000/system/blockMeshDict
+:END:
+
+Firstly, we'll change the blocks in /x/ direction of /03shockTube_10000/system/blockMeshDict/ to 10000:
+
+#+begin_src C++
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+convertToMeters 1;
+
+vertices
+(
+    (-5 -1 -1)
+    (5 -1 -1)
+    (5 1 -1)
+    (-5 1 -1)
+    (-5 -1 1)
+    (5 -1 1)
+    (5 1 1)
+    (-5 1 1)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (10000 1 1) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    sides
+    {
+        type patch;
+        faces
+        (
+            (1 2 6 5)
+            (0 4 7 3)
+        );
+    }
+    empty
+    {
+        type empty;
+        faces
+        (
+            (0 1 5 4)
+            (5 6 7 4)
+            (3 7 6 2)
+            (0 3 2 1)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+#+end_src
+**** Editing controlDict:
+:PROPERTIES:
+:header-args: :tangle 03shockTube_10000/system/controlDict
+:END:
+
+We note that, with the default /deltaT = 1e-5/ we have a Courant number greater than 1. So, as we are making /deltaX/ (number of cells) smaller (more cells), we have to change /deltaT/ to comply with the CFL condition.
+
+For this reason, we'll edit /system/controlDict/:
+
+#+begin_src C++
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+
+application     rhoPimpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.007;
+
+deltaT          1e-06;
+
+writeControl    runTime;
+
+writeInterval   0.001;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    #includeFunc mag(U)
+}
+#+end_src
+
+Note that we changed /deltaT/ from 1e-5 to 1e-6, so that we can mantain a Co of around 0.6 (maximum Co for our number of cells). As the number of cells is increased by a factor of 10, the cell size is reduced by a factor of 10. For keeping the courant number in the same range (around 0.6), deltaT shoyld be decreased by a factor of 10 as well; that is /delta = 1e-6/.
+*** Running the simulation:
+:PROPERTIES:
+:header-args: :tangle 03shockTube_10000/run
+:END:
+
+After changing /blockMeshDict/ and /controlDict/, the steps for running the simulation will be the same as in the two previous cases:
+
+#+begin_src bash
+blockMesh | tee log.blockMesh
+setFields | tee log.setFields
+touch open.foam
+rhoPimpleFoam | tee log.rhoPimpleFoam
+#+end_src
+
+Remember that you have to be in the main directory to run the previous commands.
+
+You will note that, as the number of cells is increased, the simulation will take up much more time (more iterations).
+*** Post-processing - Results:
+
+After oppening the dummy file /open.foam/ with ParaView, we can the see the changes in the mesh:
+
+[[file:03shockTube_10000/images/mesh.png]]
+#+CAPTION: Mesh with 10000 cells
+
+We can see that the mesh is so fine that we can only see the cells by zooming in a lot.
+
+After exporting the images for /p/, /U/ and /T/ we create the animations with /ffmpeg/:
+
+[[file:03shockTube_10000/images/p.mp4]]
+
+file:03shockTube_10000/images/T.mp4
+
+file:03shockTube_10000/images/U.mp4
+
+We can see that with a better mesh, the animations are much clearer.
