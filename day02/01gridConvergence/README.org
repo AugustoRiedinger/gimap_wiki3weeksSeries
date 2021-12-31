@@ -188,3 +188,38 @@ And execute the solver to run the simulation:
 rhoPimpleFoam | tee log.rhoPimpleFoam
 #+end_src
 *** Post-processing - Results:
+:PROPERTIES:
+:header-args: :tangle postProcessing
+:END:
+
+First, we open the dummy file with ParaView in the background:
+
+#+begin_src bash
+paraview open.foam &
+#+end_src
+
+Then, we evaluate the different parameters. We will export every second (frame) as a picture. For this, in ParaView go to /File -> Save Animation .../ and save the diffent results as /*.png/ files. The files should have been saves with 4 decimals (as a default), i.e.:
+
++ p.0000.png
++ p.0001.png
++ p.0002.png
++ ....
+
+As an example with the pressure /p/.
+
+We can use /ffmpeg/ to create a video out of the images:
+
+#+begin_src bash
+ffmpeg -framerate 1 -i p.%04d.png p.mp4
+#+end_src
+
+And the same can be done for /U/ and /T/.
+
+[[file:01shockTube_1000/images/p.mp4]]
+#+CAPTION: Pressure with a 1000 blocks mesh
+
+[[file:01shockTube_1000/images/T.mp4]]
+#+CAPTION: Temperature with a 1000 blocks mesh
+
+[[file:01shockTube_1000/images/U.mp4]]
+#+CAPTION: Velocity with a 1000 blocks mesh
