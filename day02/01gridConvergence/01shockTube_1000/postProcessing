@@ -1,0 +1,3 @@
+paraview open.foam &
+
+ffmpeg -framerate 1 -i p.%04d.png p.mp4
