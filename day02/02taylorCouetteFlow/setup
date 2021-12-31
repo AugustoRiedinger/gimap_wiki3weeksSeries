@@ -1,0 +1,6 @@
+tar xvf case.tar.gz && rm case.tar.gz
+
+mv taylor_couette 00baseCase
+
+touch open.foam
+paraview open.foam
