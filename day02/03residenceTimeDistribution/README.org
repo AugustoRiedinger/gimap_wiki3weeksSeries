@@ -4,7 +4,12 @@
 
 * Table of contents :toc:
 - [[#about][About]]
-- [[#setting-up-the-case][Setting up the case:]]
+- [[#background][Background:]]
+  - [[#rtd][RTD:]]
+  - [[#tracer-analysis][Tracer analysis:]]
+- [[#simulation][Simulation:]]
+  - [[#setting-up-the-case][Setting up the case:]]
+  - [[#pre-processing][Pre-processing:]]
 
 * About
 
@@ -14,9 +19,51 @@ We wil use simpleFoam and scalarTransportFoam to simulate the flow through a squ
  + Understanding RTD calculation using OpenFOAM.
  + Using multiple solvers for a simulation.
 
-* Setting up the case:
+* Background:
+
+** RTD:
+
+Residence time distribution is a probability distribution function that probides information about the amount of time a tracer element spends within a process unit, such as a reactor or a column. RTD analysis is important because in almost all real-life processes, the mixing is not ideal and chemical engineers will need RTD to analyze the real mixing characteristics, for example inside a continously stirred reactor. They can also use RTD analysis to obtain information about the flow pattern, back mixing and bypassing beahavior of a process unit.
+
+** Tracer analysis:
+
+Radioactive tracers are usually used to determine RTD of a process unit. Looking at the following diagram:
+
+[[file:images/tracerAnalysis.png]]
+
+First, the reacer is injected into the inlet, and then the exit tracer concentration, C, is measured at regular intervals. This allows the exit age distribution, E, to be calculated.
+
+The fraction of tracer molecules exiting the reactor that have spent time between 't' and 't+dt' in the process unit is E(t) dt. Since all tracer elements will leave the unit at some point, RTD satifies that
+
+#+begin_src latex
+\begin{equation}
+  \int^{\infty}_{0}{E(t) \: dt = 1}
+\end{equation}
+#+end_src
+
+* Simulation:
+
+Use the /simpleFoam/ and /scalarTransportFoam/ to simulate the flow through a square cross section /T/ pipe and calculate RTD for both inlets using a step function injection.
+
+ + Inlet and oulet cross sections: 1 x 1 m².
+ + Gas in the system: air at ambient conditions.
+ + Operation pressure: 10⁵ Pa.
+ + Inlet 1: 0.1 m/s.
+ + Inlet 2: 0.2 m/s.
+
+Plot the step response funtion and the RTD curve.
+
+** Setting up the case:
 :PROPERTIES:
 :header-args: :tangle setup
 :END:
 
-The pdf with the explanation can be downloaded from [[https://www.cfd.at/downloads/FoamTutorial_10-ExampleTen.pdf]here].
+The pdf with the explanation can be downloaded from [[https://www.cfd.at/downloads/FoamTutorial_10-ExampleTen.pdf]].
+
+Now we have to copy the tutorial to the working directory as a base case:
+
+#+begin_src bash
+cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily/ 00baseCase
+#+end_src
+
+** Pre-processing:
