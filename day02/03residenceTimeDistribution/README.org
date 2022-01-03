@@ -1,0 +1,22 @@
+#+TITLE: Residence time distribution
+#+AUTHOR: A. Riedinger
+#+PROPERTY: :header-tags :tangle yes
+
+* Table of contents :toc:
+- [[#about][About]]
+- [[#setting-up-the-case][Setting up the case:]]
+
+* About
+
+We wil use simpleFoam and scalarTransportFoam to simulate the flow through a square cross section T pipe and calculate RTD (Residence Time Distribution) for both inlets using a step function injection.
+
+*Objectives:*
+ + Understanding RTD calculation using OpenFOAM.
+ + Using multiple solvers for a simulation.
+
+* Setting up the case:
+:PROPERTIES:
+:header-args: :tangle setup
+:END:
+
+The pdf with the explanation can be downloaded from [[https://www.cfd.at/downloads/FoamTutorial_10-ExampleTen.pdf]here].

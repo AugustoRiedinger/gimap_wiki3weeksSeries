@@ -21,6 +21,8 @@ In this tutorial we focus on:
 - [[#background][Background:]]
   - [[#case-geometry-and-mesh][Case, geometry and mesh:]]
 - [[#setting-up-the-case][Setting up the case:]]
+- [[#first-simulation][First simulation:]]
+  - [[#pre-processing][Pre-processing:]]
 
 * Background:
 ** Case, geometry and mesh:
@@ -43,9 +45,9 @@ In older versions of OpenFOAM, the initial mesh used to be in /constant/polyMesh
 :header-args: :tangle setup
 :END:
 
-The case can be downloades from: https://rheologic.net/sites/default/files/downloads/taylor_couette.tar.gz.
+The case can be downloaded from: https://rheologic.net/sites/default/files/downloads/taylor_couette.tar.gz.
 
-Once downloades, you can extract it with:
+Once downloaded, you can extract it with:
 
 #+begin_src bash
 tar xvf case.tar.gz && rm case.tar.gz
@@ -67,3 +69,13 @@ paraview open.foam
 we can see the initial geometry:
 
 [[file:00baseCase/images/geometry.png]]
+
+* First simulation:
+** Pre-processing:
+
+
+You will find the mesh has already been created:
+
+[[file:00baseCase/images/mesh.png]]
+
+So, there is no need to run neither /blockMesh/ nor /setFields/ like in the previous tutorials.
