@@ -10,6 +10,7 @@
 - [[#simulation][Simulation:]]
   - [[#setting-up-the-case][Setting up the case:]]
   - [[#pre-processing][Pre-processing:]]
+  - [[#running-the-simulation][Running the simulation:]]
 
 * About
 
@@ -67,3 +68,212 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily/ 00baseCase
 #+end_src
 
 ** Pre-processing:
+
+*** 0 directory:
+First, we are going to update values for /U/, /p/, /nut/, /nuTilda/, /k/ and /epsilon/ in the /0 directory/ with the new boundary conditions:
+**** U:
+:PROPERTIES:
+:header-args: :tangle 00baseCase/0/U
+:END:
+
+Here we are going to create two new inlets, /inlet_one/ and /inlet_two/, with values 0.1 and -0.2 in the /x/ direction respectively.
+
+#+begin_src C++
+FoamFile
+{
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    inlet_one
+    {
+        type            fixedValue;
+        value           uniform (0.1 0 0);
+    }
+
+    inlet_two
+    {
+        type            fixedValue;
+        value           uniform (-0.2 0 0);
+    }
+
+    outlet
+    {
+        type            zeroGradient;
+    }
+
+    walls
+    {
+        type            fixedValue;
+        value           uniform (0 0 0)
+    }
+}
+#+end_src
+**** p:
+:PROPERTIES:
+:header-args: :tangle 00baseCase/0/p
+:END:
+
+Here we are going to change the /internalField/ value for 1e5 (10⁵ Pa operation pressure).
+
+#+begin_src C++
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 1e5;
+
+boundaryField
+{
+    inlet
+    {
+        type            zeroGradient;
+    }
+
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+
+    upperWall
+    {
+        type            zeroGradient;
+    }
+
+    lowerWall
+    {
+        type            zeroGradient;
+    }
+
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+#+end_src
+
+*** Editing blockMesh:
+:PROPERTIES:
+:header-args: :tangle 00baseCase/system/blockMeshDict
+:END:
+
+We are going to edit /blockMeshDict/ to create an aproppiate geometry:
+
+#+begin_src C++
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+convertToMeters 1.0;
+
+vertices
+(
+    (0 4 0) // 0
+    (0 3 0) // 1
+    (3 3 0) // 2
+    (3 0 0) // 3
+    (4 0 0) // 4
+    (4 3 0) // 5
+    (7 3 0) // 6
+    (7 4 0) // 7
+    (4 4 0) // 8
+    (3 4 0) // 9
+    (0 4 1) // 10
+    (0 3 1) // 11
+    (3 3 1) // 12
+    (3 0 1) // 13
+    (4 0 1) // 14
+    (4 3 1) // 15
+    (7 3 1) // 16
+    (7 4 1) // 17
+    (4 4 1) // 18
+    (3 4 1) // 19
+);
+
+blocks
+(
+    hex (0 1 2 9 10 11 12 19) (10 30 10) simpleGrading (1 1 1)
+    hex (9 2 5 8 19 12 15 18) (10 10 10) simpleGrading (1 1 1)
+    hex (8 5 6 7 18 15 16 17) (10 30 10) simpleGrading (1 1 1)
+    hex (2 3 4 5 12 13 14 15) (30 10 10) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+patches
+(
+    patch inlet_one
+    (
+        (0 10 11 1)
+    )
+    patch inlet_two
+    (
+        (7 6 16 17)
+    )
+    patch outlet
+    (
+        (4 3 13 14)
+    )
+    wall walls
+    (
+        (0 1 2 9)
+        (2 5 8 9)
+        (5 6 7 8)
+        (2 3 4 5)
+        (10 19 12 11)
+        (19 18 15 12)
+        (18 17 16 15)
+        (15 14 13 12)
+        (0 9 19 10)
+        (9 8 18 19)
+        (8 7 17 18)
+        (2 1 11 12)
+        (3 2 12 13)
+        (5 4 14 15)
+        (6 5 15 16)
+    )
+);
+
+mergePatchPairs
+(
+);
+#+end_src
+** Running the simulation:
+:PROPERTIES:
+:header-args: :tangle 00baseCase/run
+:END:
+
+We are going to create a dummy file and then run /blockMesh/ in order to create the geometry:
+
+#+begin_src bash
+touch open.foam
+blockMesh | tee log.blockMesh
+#+end_src
+
+And opening the dummy file with paraview:
+
+#+begin_src bash
+paraview open.foam
+#+end_src
+
+we can verify the geometry:
+
+[[file:images/mesh.png]]
