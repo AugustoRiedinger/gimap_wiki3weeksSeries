@@ -6,8 +6,8 @@
 - [[#objective][OBJECTIVE]]
 - [[#simulation][SIMULATION]]
   - [[#pre-processing][Pre-processing]]
-  - [[#system-directory][System directory]]
-  - [[#controldict][controlDict]]
+  - [[#running-the-simulation][Running the simulation]]
+  - [[#post-processing][Post-processing]]
 
 * ABOUT
 This tutorial is an introduction to the OpenFOAM® sampling utility. With this utility  one can extract sample data from certain selected surfaces or points in ones simulation  after or while running the simulation. If data is sampled while running one can use  sampling to observe the progress of the simulation and the correctness of the solution  without even reaching a write-interval.
@@ -29,7 +29,7 @@ We will use the /shockTube/ tutorial. For that, we will copy it from OpenFOAM's 
 #+begin_src bash
 cp -r $FOAM_TUTORIALS/compressible/rhoPimpleFoam/laminar/shockTube 00baseCase
 #+end_src
-** System directory
+*** System directory
 :PROPERTIES:
 :header-args: :tangle 00baseCase/system/sample
 :END:
@@ -76,7 +76,7 @@ In the ~sets~ sub-dictionary each set of data should be given a name, which is f
 + ~nPoints~: number of points of our line.
 
 Outside of the data and sets bracket in the fields we have to define which fields we want to sample.
-** controlDict
+*** controlDict
 :PROPERTIES:
 :header-args: :tangle 00baseCase/system/controlDict
 :END:
@@ -134,7 +134,7 @@ functions
     linesample
     {
         type                sets;
-        functionObjectLibs  (“libsampling.so”);
+        functionObjectLibs  ("libsampling.so");
         writeControl        timeStep;
         outputInterval      1;
 
@@ -165,3 +165,34 @@ Inside our linesample sub-dictionary:
  + ~type~: ~sets~ or ~surfaces~ can be chosen.
  + ~functionObjectLibs~: provides operations needed for the sampling tasks.
  + ~writeControl~: specifies the intervals in which sampling data should be collected in the case of ~timeStep~, depending on the ~outputInterval~, sampling data will get saved in dependence of the ~timeStep~. In the case of ~outputInterval~ being equal to 1, every time step sampling data will be saved. Changing the interval to 2 means that the data will be saved every 2 time steps.
+
+** Running the simulation
+:PROPERTIES:
+:header-args: :tangle 00baseCase/run
+:END:
+
+Run the tutorial with the following commands:
+
+#+begin_src bash
+blockMesh | tee log.blockMesh
+setFields | tee log.setFields
+touch open.foam
+rhoPimpleFoam | tee log.rhoPimpleFoam
+#+end_src
+** Post-processing
+After ~rhoPimpleFoam~ solver finishes running, based on your sampling approach the following steps should be performed.
+
+*** sample directory
+:PROPERTIES:
+:header-args: :tangle 00baseCase/postproc
+:END:
+
+Use the ~sample~ command to extract your sample-data.
+
+#+begin_src bash
+postProcess -func sample
+#+end_src
+
+A new folder will appear in your case directory named =postProcessing= and in it a folder named =sample=. In this folder all the sampling data will be stored in separate folders for each write-interval.
+*** controlDict
+The =postProcessing= directory and all its subdirectories have been generated after the first time step. Now it can be seen that for every time step a folder is generated instead of only every write interval.

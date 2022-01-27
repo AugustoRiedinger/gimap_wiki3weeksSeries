@@ -44,7 +44,7 @@ functions
     linesample
     {
         type                sets;
-        functionObjectLibs  (“libsampling.so”);
+        functionObjectLibs  ("libsampling.so");
         writeControl        timeStep;
         outputInterval      1;
 
