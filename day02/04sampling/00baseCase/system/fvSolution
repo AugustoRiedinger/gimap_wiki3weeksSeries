@@ -8,37 +8,38 @@
 FoamFile
 {
     format      ascii;
-    class       volScalarField;
-    location    "0";
-    object      epsilon;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -3 0 0 0 0];
-
-internalField   uniform 14.855;
-
-boundaryField
+solvers
 {
-    inlet_one
+    "(p|U|e).*"
     {
-        type            fixedValue;
-        value           uniform 14.855;
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-15;
+        relTol          0;
     }
-    inlet_two
+
+    "rho.*"
     {
-        type            fixedValue;
-        value           uniform 14.855;
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-15;
+        relTol          0;
     }
-    outlet
-    {
-        type            zeroGradient;
-    }
-    walls
-    {
-        type            fixedValue;
-        value           uniform 0;
-    }
+}
+
+PIMPLE
+{
+    nOuterCorrectors     2;
+    nCorrectors          1;
+    nNonOrthogonalCorrectors 0;
+
+    transonic            yes;
 }
 
 

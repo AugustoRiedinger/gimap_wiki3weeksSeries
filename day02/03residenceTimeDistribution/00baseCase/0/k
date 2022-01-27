@@ -20,7 +20,12 @@ internalField   uniform 0.375;
 
 boundaryField
 {
-    inlet
+    inlet_one
+    {
+        type            fixedValue;
+        value           uniform 0.375;
+    }
+    inlet_two
     {
         type            fixedValue;
         value           uniform 0.375;
@@ -29,19 +34,10 @@ boundaryField
     {
         type            zeroGradient;
     }
-    upperWall
+    walls
     {
-        type            kqRWallFunction;
-        value           uniform 0.375;
-    }
-    lowerWall
-    {
-        type            kqRWallFunction;
-        value           uniform 0.375;
-    }
-    frontAndBack
-    {
-        type            empty;
+        type            fixedValue;
+        value           uniform 0;
     }
 }
 

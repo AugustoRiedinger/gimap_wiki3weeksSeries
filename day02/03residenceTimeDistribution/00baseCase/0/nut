@@ -20,7 +20,12 @@ internalField   uniform 0;
 
 boundaryField
 {
-    inlet
+    inlet_one
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    inlet_two
     {
         type            calculated;
         value           uniform 0;
@@ -30,19 +35,10 @@ boundaryField
         type            calculated;
         value           uniform 0;
     }
-    upperWall
+    walls
     {
-        type            nutkWallFunction;
+        type            fixedValue;
         value           uniform 0;
-    }
-    lowerWall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-    frontAndBack
-    {
-        type            empty;
     }
 }
 

@@ -1,0 +1,69 @@
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     rhoPimpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.007;
+
+deltaT          1e-05;
+
+writeControl    runTime;
+
+writeInterval   0.001;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    #includeFunc mag(U)
+
+    linesample
+    {
+        type                sets;
+        functionObjectLibs  (“libsampling.so”);
+        writeControl        timeStep;
+        outputInterval      1;
+
+        interpolationScheme cellPoint;
+
+        setFormat   raw;
+
+        sets
+        (
+            data
+            {
+                type    uniform;
+                axis    x;
+                start   (-4.995 0 0);
+                end     (4.995 0 0);
+                nPoints 1000;
+            }
+        );
+
+        fields          (T mag(U) p);
+    }
+}
