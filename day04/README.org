@@ -1,0 +1,10 @@
+#+TITLE: DAY 04
+
+We will go even further into the depths and find, where the rubber meets the road (at least mathematically). We will have a special focus on discretization. Why is this important? Did you ever try to solve the fluid dynamic equations for an arbitrary industrial application by hand? Well... In most cases it is a better idea to break down the partial differential/integral equations into "simple" operations (+,-,*,/) and solve them for "small" volumens (yes, the cells in your mesh). This is called discretization.
+
+The contents of this day are:
+
+ + Crash introduction to the FVM: In these slides you will find an in depth summary of the theory of CFD and also OpenFOAM.
+ + Detailed Numerics: This tutorial provides additional insights about numerics in OpenFOAM.
+ + Discretization: Discretization and the influence of different schemes on the simulation results are the major topics covered in this tutorial.
+ + Discretization strategies: In this tutorial you will find strategies on how to improve your simulation results by optimizing the utilized discretization settings.

@@ -1,0 +1,6 @@
+#+TITLE: DAY 03
+
+Day 3 is just about digesting all the information from the previous days.
+Watch the following video from Professor Jasak:
+
+https://wiki.openfoam.com/Introduction_to_OpenFOAM:_A_User_View_by_Kenneth_Hoste_and_Hrvoje_Jasak
