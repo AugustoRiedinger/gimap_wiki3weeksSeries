@@ -4,7 +4,7 @@ We will go even further into the depths and find, where the rubber meets the roa
 
 The contents of this day are:
 
- + Crash introduction to the FVM: In these slides you will find an in depth summary of the theory of CFD and also OpenFOAM.
- + Detailed Numerics: This tutorial provides additional insights about numerics in OpenFOAM.
- + Discretization: Discretization and the influence of different schemes on the simulation results are the major topics covered in this tutorial.
- + Discretization strategies: In this tutorial you will find strategies on how to improve your simulation results by optimizing the utilized discretization settings.
+ + *Crash introduction to the FVM:* In these slides you will find an in depth summary of the theory of CFD and also OpenFOAM.
+ + *Detailed Numerics:* This tutorial provides additional insights about numerics in OpenFOAM.
+ + *Discretization:* Discretization and the influence of different schemes on the simulation results are the major topics covered in this tutorial.
+ + *Discretization strategies:* In this tutorial you will find strategies on how to improve your simulation results by optimizing the utilized discretization settings.

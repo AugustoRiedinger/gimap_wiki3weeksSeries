@@ -1,0 +1,99 @@
+ddt schemes;
+
+CoEuler
+CrankNicolson
+Euler
+SLTS
+backward
+bounded
+localEuler
+steadyState
+
+
+
+postProcess -func sampleDict
+
+divSchemes;
+
+
+CoBlended
+Gamma
+Gamma01
+LUST
+MUSCL
+MUSCL01
+Minmod
+OSPRE
+QUICK
+SFCD
+SuperBee
+UMIST
+biLinearFit
+blended
+cellCoBlended
+clippedLinear
+cubic
+cubicUpwindFit
+downwind
+filteredLinear
+filteredLinear2
+filteredLinear3
+fixedBlended
+harmonic
+limitWith
+limitedCubic
+limitedCubic01
+limitedGamma
+limitedLimitedCubic
+limitedLimitedLinear
+limitedLinear
+limitedLinear01
+limitedMUSCL
+limitedVanLeer
+limiterBlended
+linear
+linearFit
+linearPureUpwindFit
+linearUpwind
+localBlended
+localMax
+localMin
+midPoint
+outletStabilised
+pointLinear
+quadraticFit
+quadraticLinearFit
+quadraticLinearUpwindFit
+quadraticUpwindFit
+reverseLinear
+skewCorrected
+upwind
+vanAlbada
+vanLeer
+vanLeer01
+weighted
+
+
+OpenFOAM includes a vast number of discretisation schemes, from which only a few are typically recommended for real-world, engineering applications. The user can get help with scheme selection by interrogating the tutorial cases for example scheme settings. They should look at the schemes used in relevant cases, e.g.  for running a large-eddy simulation (LES), look at schemes used in tutorials running LES. Additionally, foamSearch provides a useful tool to get a quick list of schemes used in all the tutorials. For example, to print all the default entries for ddtSchemes for cases in the $FOAM_TUTORIALS directory, the user can type:
+
+    foamSearch $FOAM_TUTORIALS fvSchemes ddtSchemes.default
+which prints:
+
+    default         backward; 
+    default         CrankNicolson 0.9; 
+    default         Euler; 
+    default         localEuler; 
+    default         none; 
+    default         steadyState;
+The schemes listed using foamSearch are described in the following sections.
+
+
+           fvScalarMatrix TEqn
+            (
+                fvm::ddt(T)
+              + fvm::div(phi, T)
+              - fvm::laplacian(DT, T)
+             ==
+                fvOptions(T)
+            );
+
