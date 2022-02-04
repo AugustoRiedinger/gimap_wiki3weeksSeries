@@ -8,6 +8,8 @@
   - [[#boundary-condition-u][BOUNDARY CONDITION U]]
   - [[#running-the-case][RUNNING THE CASE]]
 - [[#paraboloid-inlet-profile][PARABOLOID INLET PROFILE]]
+  - [[#u-boundary-condition][U BOUNDARY CONDITION]]
+  - [[#running-the-case-1][RUNNING THE CASE]]
 
 * ABOUT
 There are many BC available in OpenFOAM, but from time to time it may happen that you do not find what you are looking for. For this reason, it is possible to implement *your own* boundary conditions. You have three options:
@@ -191,3 +193,128 @@ And we obtain something like this:
 
 [[file:images/paraview_parabolicInlet.png]]
 * PARABOLOID INLET PROFILE
+The first step will be to get all the spatial references:
+
+[[file:images/paraboloidInlet_references.png]]
+
+We will implement the following equation in the boundary patch =auto3=:
+
+[[file:images/paraboloidInlet_equation.png]]
+
+** U BOUNDARY CONDITION
+:PROPERTIES:
+:header-args: :tangle 3Delbow_Uparaboloid/0/U]
+:END:
+
+The =codeStream= BC in the body of the file [[file:case/3Delbow_Uparaboloid/0/U]] is as follows:
+
+#+begin_src c++
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    auto0
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    auto1
+    {
+        type            zeroGradient;
+    }
+    auto2
+    {
+        type            fixedValue;
+        value           uniform (0 1 0);
+    }
+    auto3
+    {
+        type            fixedValue;
+        value           #codeStream
+        {
+            codeInclude
+            #{
+                #include "fvCFD.H"
+            #};
+
+            codeOptions
+            #{
+                -I$(LIB_SRC)/finiteVolume/lnInclude \
+                -I$(LIB_SRC)/meshTools/lnInclude
+            #};
+
+            //libs needed to visualize BC in paraview
+            codeLibs
+            #{
+                -lmeshTools \
+                -lfiniteVolume
+            #};
+
+            code
+            #{
+                const IOdictionary& d = static_cast<const IOdictionary&>
+                (
+                    dict.parent().parent()
+                );
+                const fvMesh& mesh = refCast<const fvMesh>(d.db());
+                const label id = mesh.boundary().findPatchID("auto3");
+                const fvPatch& patch = mesh.boundary()[id];
+
+                vectorField U(patch.size(), vector(0, 0, 0));
+
+                const scalar pi = constant::mathematical::pi;
+                const scalar s  = 0.5;
+
+                forAll(U, i)
+                {
+                    const scalar x = patch.Cf()[i][0];
+                    const scalar y = patch.Cf()[i][1];
+                    const scalar z = patch.Cf()[i][2];
+
+                    U[i] = vector(-1*(pow(z/s, 2) + pow((y-s)/s,2) - 1.0), 0, 0);
+                }
+
+                writeEntry(os, "", U);
+            #};
+        };
+    }
+}
+#+end_src
+
+The =codeOptions=, =codeInclude= and =codeLibs= part is the same as the last one; and the code is inserted in the =code= part.
+
+We will also use the same code to access the dictionary.
+
+But now, as we are working with scalars, we need to initialize them such as =const scalar s = 0.5=. And then, in the =forAll= loop we access the face center coordinates (x, y and z) and insertem them in U.
+** RUNNING THE CASE
+:PROPERTIES:
+:header-args: :tangle run_paraboloid
+:END:
+
+To run the case we can do:
+
+#+begin_src bash
+cd case/3Delbow_Uparaboloid/
+foamCleanCase
+gmshToFoam ../../meshAndGeometries/gmsh_elbow3d/geo.msh | tee log/gmshToFoam.log
+autoPatch 75 -overwrite
+createPatch -overwrite
+renumberMesh -overwrite
+touch open.foam
+icoFoam | tee log/icoFoam.log
+#+end_src
+
+We get something like this:
+
+[[file:images/paraboloid_results.png]]

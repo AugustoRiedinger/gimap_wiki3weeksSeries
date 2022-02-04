@@ -1,0 +1,47 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-c8374a4890ad
+Exec   : icoFoam
+Date   : Feb 04 2022
+Time   : 13:14:01
+Host   : "endeavouros"
+PID    : 461649
+I/O    : uncollated
+Case   : /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading transportProperties
+
+Reading field p
+
+Reading field U
+
+Using #codeStream at line 40 in file "/home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/0/U/boundaryField/auto3"
+Using #codeStream with "/home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_0bcd6e21f5bff7295a537c7d0b93093e24533ad0.so"
+Creating new library in "dynamicCode/_0bcd6e21f5bff7295a537c7d0b93093e24533ad0/platforms/linux64GccDPInt32Opt/lib/libcodeStream_0bcd6e21f5bff7295a537c7d0b93093e24533ad0.so"
+"/opt/OpenFOAM/OpenFOAM-9/etc/codeTemplates/dynamicCode/codeStreamTemplate.C" "/home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/dynamicCode/_0bcd6e21f5bff7295a537c7d0b93093e24533ad0/codeStreamTemplate.C"
+Invoking "wmake -s libso /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/dynamicCode/_0bcd6e21f5bff7295a537c7d0b93093e24533ad0"
+wmake libso /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/dynamicCode/_0bcd6e21f5bff7295a537c7d0b93093e24533ad0
+    wmkdep: codeStreamTemplate.C
+    Ctoo: codeStreamTemplate.C
+    ld: /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/dynamicCode/_0bcd6e21f5bff7295a537c7d0b93093e24533ad0/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_0bcd6e21f5bff7295a537c7d0b93093e24533ad0.so
+codeStream : dictionary:"/home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/0/U/boundaryField/auto3" master-only-reading:0
+
+on processor 0 have masterSize:747352 and localSize:747352
+
+on processor 0 after waiting: have masterSize:747352 and localSize:747352
+Opening cached dictionary:"/home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_0bcd6e21f5bff7295a537c7d0b93093e24533ad0.so"
+codeStream : dictionary:"/home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid/0/U/boundaryField/auto3" master-only-reading:0

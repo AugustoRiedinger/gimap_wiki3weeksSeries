@@ -1,0 +1,444 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-c8374a4890ad
+Exec   : gmshToFoam ../../meshesAndGeometries/gmsh_elbow3d/geo.msh
+Date   : Feb 04 2022
+Time   : 13:09:23
+Host   : "endeavouros"
+PID    : 454957
+I/O    : uncollated
+Case   : /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Starting to read mesh format at line 2
+Read format version 2.2  ascii 0
+
+Starting to read points at line 5
+Vertices to be read:19972
+Vertices read:19972
+
+Starting to read cells at line 19980
+Cells to be read:114658
+
+Unhandled element 15 at line 19982
+Unhandled element 15 at line 19983
+Unhandled element 15 at line 19984
+Unhandled element 15 at line 19985
+Unhandled element 15 at line 19986
+Unhandled element 15 at line 19987
+Unhandled element 15 at line 19988
+Unhandled element 15 at line 19989
+Unhandled element 15 at line 19990
+Unhandled element 1 at line 19991
+Unhandled element 1 at line 19992
+Unhandled element 1 at line 19993
+Unhandled element 1 at line 19994
+Unhandled element 1 at line 19995
+Unhandled element 1 at line 19996
+Unhandled element 1 at line 19997
+Unhandled element 1 at line 19998
+Unhandled element 1 at line 19999
+Unhandled element 1 at line 20000
+Unhandled element 1 at line 20001
+Unhandled element 1 at line 20002
+Unhandled element 1 at line 20003
+Unhandled element 1 at line 20004
+Unhandled element 1 at line 20005
+Unhandled element 1 at line 20006
+Unhandled element 1 at line 20007
+Unhandled element 1 at line 20008
+Unhandled element 1 at line 20009
+Unhandled element 1 at line 20010
+Unhandled element 1 at line 20011
+Unhandled element 1 at line 20012
+Unhandled element 1 at line 20013
+Unhandled element 1 at line 20014
+Unhandled element 1 at line 20015
+Unhandled element 1 at line 20016
+Unhandled element 1 at line 20017
+Unhandled element 1 at line 20018
+Unhandled element 1 at line 20019
+Unhandled element 1 at line 20020
+Unhandled element 1 at line 20021
+Unhandled element 1 at line 20022
+Unhandled element 1 at line 20023
+Unhandled element 1 at line 20024
+Unhandled element 1 at line 20025
+Unhandled element 1 at line 20026
+Unhandled element 1 at line 20027
+Unhandled element 1 at line 20028
+Unhandled element 1 at line 20029
+Unhandled element 1 at line 20030
+Unhandled element 1 at line 20031
+Unhandled element 1 at line 20032
+Unhandled element 1 at line 20033
+Unhandled element 1 at line 20034
+Unhandled element 1 at line 20035
+Unhandled element 1 at line 20036
+Unhandled element 1 at line 20037
+Unhandled element 1 at line 20038
+Unhandled element 1 at line 20039
+Unhandled element 1 at line 20040
+Unhandled element 1 at line 20041
+Unhandled element 1 at line 20042
+Unhandled element 1 at line 20043
+Unhandled element 1 at line 20044
+Unhandled element 1 at line 20045
+Unhandled element 1 at line 20046
+Unhandled element 1 at line 20047
+Unhandled element 1 at line 20048
+Unhandled element 1 at line 20049
+Unhandled element 1 at line 20050
+Unhandled element 1 at line 20051
+Unhandled element 1 at line 20052
+Unhandled element 1 at line 20053
+Unhandled element 1 at line 20054
+Unhandled element 1 at line 20055
+Unhandled element 1 at line 20056
+Unhandled element 1 at line 20057
+Unhandled element 1 at line 20058
+Unhandled element 1 at line 20059
+Unhandled element 1 at line 20060
+Unhandled element 1 at line 20061
+Unhandled element 1 at line 20062
+Unhandled element 1 at line 20063
+Unhandled element 1 at line 20064
+Unhandled element 1 at line 20065
+Unhandled element 1 at line 20066
+Unhandled element 1 at line 20067
+Unhandled element 1 at line 20068
+Unhandled element 1 at line 20069
+Unhandled element 1 at line 20070
+Unhandled element 1 at line 20071
+Unhandled element 1 at line 20072
+Unhandled element 1 at line 20073
+Unhandled element 1 at line 20074
+Unhandled element 1 at line 20075
+Unhandled element 1 at line 20076
+Unhandled element 1 at line 20077
+Unhandled element 1 at line 20078
+Unhandled element 1 at line 20079
+Unhandled element 1 at line 20080
+Unhandled element 1 at line 20081
+Unhandled element 1 at line 20082
+Unhandled element 1 at line 20083
+Unhandled element 1 at line 20084
+Unhandled element 1 at line 20085
+Unhandled element 1 at line 20086
+Unhandled element 1 at line 20087
+Unhandled element 1 at line 20088
+Unhandled element 1 at line 20089
+Unhandled element 1 at line 20090
+Unhandled element 1 at line 20091
+Unhandled element 1 at line 20092
+Unhandled element 1 at line 20093
+Unhandled element 1 at line 20094
+Unhandled element 1 at line 20095
+Unhandled element 1 at line 20096
+Unhandled element 1 at line 20097
+Unhandled element 1 at line 20098
+Unhandled element 1 at line 20099
+Unhandled element 1 at line 20100
+Unhandled element 1 at line 20101
+Unhandled element 1 at line 20102
+Unhandled element 1 at line 20103
+Unhandled element 1 at line 20104
+Unhandled element 1 at line 20105
+Unhandled element 1 at line 20106
+Unhandled element 1 at line 20107
+Unhandled element 1 at line 20108
+Unhandled element 1 at line 20109
+Unhandled element 1 at line 20110
+Unhandled element 1 at line 20111
+Unhandled element 1 at line 20112
+Unhandled element 1 at line 20113
+Unhandled element 1 at line 20114
+Unhandled element 1 at line 20115
+Unhandled element 1 at line 20116
+Unhandled element 1 at line 20117
+Unhandled element 1 at line 20118
+Unhandled element 1 at line 20119
+Unhandled element 1 at line 20120
+Unhandled element 1 at line 20121
+Unhandled element 1 at line 20122
+Unhandled element 1 at line 20123
+Unhandled element 1 at line 20124
+Unhandled element 1 at line 20125
+Unhandled element 1 at line 20126
+Unhandled element 1 at line 20127
+Unhandled element 1 at line 20128
+Unhandled element 1 at line 20129
+Unhandled element 1 at line 20130
+Unhandled element 1 at line 20131
+Unhandled element 1 at line 20132
+Unhandled element 1 at line 20133
+Unhandled element 1 at line 20134
+Unhandled element 1 at line 20135
+Unhandled element 1 at line 20136
+Unhandled element 1 at line 20137
+Unhandled element 1 at line 20138
+Unhandled element 1 at line 20139
+Unhandled element 1 at line 20140
+Unhandled element 1 at line 20141
+Unhandled element 1 at line 20142
+Unhandled element 1 at line 20143
+Unhandled element 1 at line 20144
+Unhandled element 1 at line 20145
+Unhandled element 1 at line 20146
+Unhandled element 1 at line 20147
+Unhandled element 1 at line 20148
+Unhandled element 1 at line 20149
+Unhandled element 1 at line 20150
+Unhandled element 1 at line 20151
+Unhandled element 1 at line 20152
+Unhandled element 1 at line 20153
+Unhandled element 1 at line 20154
+Unhandled element 1 at line 20155
+Unhandled element 1 at line 20156
+Unhandled element 1 at line 20157
+Unhandled element 1 at line 20158
+Unhandled element 1 at line 20159
+Unhandled element 1 at line 20160
+Unhandled element 1 at line 20161
+Unhandled element 1 at line 20162
+Unhandled element 1 at line 20163
+Unhandled element 1 at line 20164
+Unhandled element 1 at line 20165
+Unhandled element 1 at line 20166
+Unhandled element 1 at line 20167
+Unhandled element 1 at line 20168
+Unhandled element 1 at line 20169
+Unhandled element 1 at line 20170
+Unhandled element 1 at line 20171
+Unhandled element 1 at line 20172
+Unhandled element 1 at line 20173
+Unhandled element 1 at line 20174
+Unhandled element 1 at line 20175
+Unhandled element 1 at line 20176
+Unhandled element 1 at line 20177
+Unhandled element 1 at line 20178
+Unhandled element 1 at line 20179
+Unhandled element 1 at line 20180
+Unhandled element 1 at line 20181
+Unhandled element 1 at line 20182
+Unhandled element 1 at line 20183
+Unhandled element 1 at line 20184
+Unhandled element 1 at line 20185
+Unhandled element 1 at line 20186
+Unhandled element 1 at line 20187
+Unhandled element 1 at line 20188
+Unhandled element 1 at line 20189
+Unhandled element 1 at line 20190
+Unhandled element 1 at line 20191
+Unhandled element 1 at line 20192
+Unhandled element 1 at line 20193
+Unhandled element 1 at line 20194
+Unhandled element 1 at line 20195
+Unhandled element 1 at line 20196
+Unhandled element 1 at line 20197
+Unhandled element 1 at line 20198
+Unhandled element 1 at line 20199
+Unhandled element 1 at line 20200
+Unhandled element 1 at line 20201
+Unhandled element 1 at line 20202
+Unhandled element 1 at line 20203
+Unhandled element 1 at line 20204
+Unhandled element 1 at line 20205
+Unhandled element 1 at line 20206
+Unhandled element 1 at line 20207
+Unhandled element 1 at line 20208
+Unhandled element 1 at line 20209
+Unhandled element 1 at line 20210
+Unhandled element 1 at line 20211
+Unhandled element 1 at line 20212
+Unhandled element 1 at line 20213
+Unhandled element 1 at line 20214
+Unhandled element 1 at line 20215
+Unhandled element 1 at line 20216
+Unhandled element 1 at line 20217
+Unhandled element 1 at line 20218
+Unhandled element 1 at line 20219
+Unhandled element 1 at line 20220
+Unhandled element 1 at line 20221
+Unhandled element 1 at line 20222
+Unhandled element 1 at line 20223
+Unhandled element 1 at line 20224
+Unhandled element 1 at line 20225
+Unhandled element 1 at line 20226
+Unhandled element 1 at line 20227
+Unhandled element 1 at line 20228
+Unhandled element 1 at line 20229
+Unhandled element 1 at line 20230
+Unhandled element 1 at line 20231
+Unhandled element 1 at line 20232
+Unhandled element 1 at line 20233
+Unhandled element 1 at line 20234
+Unhandled element 1 at line 20235
+Unhandled element 1 at line 20236
+Unhandled element 1 at line 20237
+Unhandled element 1 at line 20238
+Unhandled element 1 at line 20239
+Unhandled element 1 at line 20240
+Unhandled element 1 at line 20241
+Unhandled element 1 at line 20242
+Unhandled element 1 at line 20243
+Unhandled element 1 at line 20244
+Unhandled element 1 at line 20245
+Unhandled element 1 at line 20246
+Unhandled element 1 at line 20247
+Unhandled element 1 at line 20248
+Unhandled element 1 at line 20249
+Unhandled element 1 at line 20250
+Unhandled element 1 at line 20251
+Unhandled element 1 at line 20252
+Unhandled element 1 at line 20253
+Unhandled element 1 at line 20254
+Unhandled element 1 at line 20255
+Unhandled element 1 at line 20256
+Unhandled element 1 at line 20257
+Unhandled element 1 at line 20258
+Unhandled element 1 at line 20259
+Unhandled element 1 at line 20260
+Unhandled element 1 at line 20261
+Unhandled element 1 at line 20262
+Unhandled element 1 at line 20263
+Unhandled element 1 at line 20264
+Unhandled element 1 at line 20265
+Unhandled element 1 at line 20266
+Unhandled element 1 at line 20267
+Unhandled element 1 at line 20268
+Unhandled element 1 at line 20269
+Unhandled element 1 at line 20270
+Unhandled element 1 at line 20271
+Unhandled element 1 at line 20272
+Unhandled element 1 at line 20273
+Unhandled element 1 at line 20274
+Unhandled element 1 at line 20275
+Unhandled element 1 at line 20276
+Unhandled element 1 at line 20277
+Unhandled element 1 at line 20278
+Unhandled element 1 at line 20279
+Unhandled element 1 at line 20280
+Unhandled element 1 at line 20281
+Unhandled element 1 at line 20282
+Unhandled element 1 at line 20283
+Unhandled element 1 at line 20284
+Unhandled element 1 at line 20285
+Unhandled element 1 at line 20286
+Unhandled element 1 at line 20287
+Unhandled element 1 at line 20288
+Unhandled element 1 at line 20289
+Unhandled element 1 at line 20290
+Unhandled element 1 at line 20291
+Unhandled element 1 at line 20292
+Unhandled element 1 at line 20293
+Unhandled element 1 at line 20294
+Unhandled element 1 at line 20295
+Unhandled element 1 at line 20296
+Unhandled element 1 at line 20297
+Unhandled element 1 at line 20298
+Unhandled element 1 at line 20299
+Unhandled element 1 at line 20300
+Unhandled element 1 at line 20301
+Unhandled element 1 at line 20302
+Unhandled element 1 at line 20303
+Unhandled element 1 at line 20304
+Unhandled element 1 at line 20305
+Unhandled element 1 at line 20306
+Unhandled element 1 at line 20307
+Unhandled element 1 at line 20308
+Unhandled element 1 at line 20309
+Unhandled element 1 at line 20310
+Unhandled element 1 at line 20311
+Unhandled element 1 at line 20312
+Unhandled element 1 at line 20313
+Unhandled element 1 at line 20314
+Unhandled element 1 at line 20315
+Unhandled element 1 at line 20316
+Unhandled element 1 at line 20317
+Unhandled element 1 at line 20318
+Unhandled element 1 at line 20319
+Unhandled element 1 at line 20320
+Unhandled element 1 at line 20321
+Unhandled element 1 at line 20322
+Unhandled element 1 at line 20323
+Unhandled element 1 at line 20324
+Unhandled element 1 at line 20325
+Unhandled element 1 at line 20326
+Unhandled element 1 at line 20327
+Unhandled element 1 at line 20328
+Unhandled element 1 at line 20329
+Unhandled element 1 at line 20330
+Unhandled element 1 at line 20331
+Unhandled element 1 at line 20332
+Unhandled element 1 at line 20333
+Unhandled element 1 at line 20334
+Unhandled element 1 at line 20335
+Unhandled element 1 at line 20336
+Unhandled element 1 at line 20337
+Unhandled element 1 at line 20338
+Unhandled element 1 at line 20339
+Unhandled element 1 at line 20340
+Unhandled element 1 at line 20341
+Unhandled element 1 at line 20342
+Unhandled element 1 at line 20343
+Unhandled element 1 at line 20344
+Unhandled element 1 at line 20345
+Unhandled element 1 at line 20346
+Unhandled element 1 at line 20347
+Unhandled element 1 at line 20348
+Unhandled element 1 at line 20349
+Unhandled element 1 at line 20350
+Unhandled element 1 at line 20351
+Unhandled element 1 at line 20352
+Unhandled element 1 at line 20353
+Unhandled element 1 at line 20354
+Unhandled element 1 at line 20355
+Unhandled element 1 at line 20356
+Unhandled element 1 at line 20357
+Unhandled element 1 at line 20358
+Unhandled element 1 at line 20359
+Unhandled element 1 at line 20360
+Unhandled element 1 at line 20361
+Unhandled element 1 at line 20362
+Unhandled element 1 at line 20363
+Unhandled element 1 at line 20364
+Mapping region 0 to Foam patch 0
+Mapping region 0 to Foam cellZone 0
+Cells:
+    total:103355
+    hex  :0
+    prism:0
+    pyr  :0
+    tet  :103355
+
+CellZones:
+Zone	Size
+    0	103355
+
+Skipping tag  at line 134641
+Patch 0 gets name patch0
+
+--> FOAM Warning : 
+    From function Foam::polyMesh::polyMesh(const Foam::IOobject&, Foam::pointField&&, const cellShapeList&, const faceListList&, const wordList&, const wordList&, const Foam::word&, const Foam::word&, const wordList&, bool)
+    in file meshes/polyMesh/polyMeshFromShapeMesh.C at line 595
+    Found 10920 undefined faces in mesh; adding to default patch.
+Finding faces of patch 0
+
+FaceZones:
+Zone	Size
+
+Writing zone 0 to cellZone cellZone_0 and cellSet
+End
+

@@ -1,0 +1,41 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-c8374a4890ad
+Exec   : autoPatch 75 -overwrite
+Date   : Feb 04 2022
+Time   : 13:09:55
+Host   : "endeavouros"
+PID    : 455831
+I/O    : uncollated
+Case   : /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Mesh read in = 0.3 s
+
+
+Feature:75
+minCos :0.25881905
+
+Assigned 10143 faces to patch auto4
+
+Assigned 257 faces to patch auto5
+
+Assigned 265 faces to patch auto6
+
+Assigned 255 faces to patch auto7
+
+End
+

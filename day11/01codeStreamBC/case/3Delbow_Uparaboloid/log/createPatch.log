@@ -1,0 +1,44 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-c8374a4890ad
+Exec   : createPatch -overwrite
+Date   : Feb 04 2022
+Time   : 13:10:20
+Host   : "endeavouros"
+PID    : 456466
+I/O    : uncollated
+Case   : /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/3Delbow_Uparaboloid
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Reading "createPatchDict"
+
+
+Doing topology modification to order faces.
+
+Not synchronising points.
+
+Removing patches with no faces in them.
+
+Removing zero-sized patch patch0 type patch at position 0
+Removing zero-sized patch auto0 type patch at position 1
+Removing zero-sized patch auto1 type patch at position 2
+Removing zero-sized patch auto2 type patch at position 3
+Removing zero-sized patch auto3 type patch at position 4
+Removing patches.
+Writing repatched mesh to 0
+
+End
+

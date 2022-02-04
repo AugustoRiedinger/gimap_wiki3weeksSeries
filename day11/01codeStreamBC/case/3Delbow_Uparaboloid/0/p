@@ -37,6 +37,30 @@ boundaryField
     {
         type            zeroGradient;
     }
+    auto4
+    {
+        type            zeroGradient;
+    }
+    auto5
+    {
+        type            zeroGradient;
+    }
+    auto6
+    {
+        type            zeroGradient;
+    }
+    auto7
+    {
+        type            zeroGradient;
+    }
+    auto8
+    {
+        type            zeroGradient;
+    }
+    auto9
+    {
+        type            zeroGradient;
+    }
 }
 
 // ************************************************************************* //
