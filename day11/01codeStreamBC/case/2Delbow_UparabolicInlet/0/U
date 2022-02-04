@@ -1,0 +1,94 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    wall-4
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    velocity-inlet-5
+    {
+        type            fixedValue;
+        value           #codeStream
+        {
+            codeInclude
+            #{
+                #include "fvCFD.H"
+            #};
+
+            codeOptions
+            #{
+                -I$(LIB_SRC)/finiteVolume/lnInclude \
+                -I$(LIB_SRC)/meshTools/lnInclude
+            #};
+
+            codeLibs
+            #{
+                -lmeshTools \
+                -lfiniteVolume
+            #};
+
+            code
+            #{
+                const IOdictionary& d = static_cast<const IOdictionary&>
+                (
+                    dict.parent().parent()
+                );
+
+                const fvMesh& mesh = refCast<const fvMesh>(d.db());
+                const label id = mesh.boundary().findPatchID("velocity-inlet-5");
+                const fvPatch& patch = mesh.boundary()[id];
+
+                vectorField U(patch.size(), vector(0, 0, 0));
+
+                const scalar pi = constant::mathematical::pi;
+                const scalar U_0   = 2.;	//max vel
+                const scalar p_ctr = 8.;	//patch center
+                const scalar p_r   = 8.;	//patch radius
+
+                forAll(U, i)
+                {
+                    const scalar y = patch.Cf()[i][1];
+                    U[i] = vector(U_0*(1-(pow(y - p_ctr,2))/(p_r*p_r)), 0., 0.);
+                }
+
+                writeEntry(os, "", U);
+            #};
+        };
+    }
+
+    velocity-inlet-6
+    {
+        type            fixedValue;
+        value           uniform (0 3 0);
+    }
+
+    pressure-outlet-7
+    {
+        type            zeroGradient;
+    }
+
+    wall-8
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    frontAndBackPlanes
+    {
+        type            empty;
+    }
+}

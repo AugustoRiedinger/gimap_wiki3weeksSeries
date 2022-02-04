@@ -1,0 +1,6 @@
+cd case/2Delbow_UparabolicInlet/
+foamCleanCase
+fluentMeshToFoam ../../meshAndGeometries/fluent_elbow2D_1/ascii.msh | tee log/fluentMeshToFoam.log
+checkMesh | tee log/checkMesh.log
+touch open.foam
+icoFoam | tee log/icoFoam.log

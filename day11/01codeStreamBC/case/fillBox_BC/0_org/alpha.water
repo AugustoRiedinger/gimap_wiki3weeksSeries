@@ -1,0 +1,112 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      alpha.water;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    leftWall
+    {
+        //type            zeroGradient;
+
+   	type            codedFixedValue;
+    	value           uniform 0;
+    	redirectType    inletProfile2;
+
+	code
+    	#{
+            const fvPatch& boundaryPatch = patch(); 
+            const vectorField& Cf = boundaryPatch.Cf(); 
+            scalarField& field = *this; 
+
+            field = patchInternalField(); 	//take value from initialization
+
+            scalar minz = 0.4;  
+            scalar maxz = 0.6; 
+            scalar miny = 0.5;  
+            scalar maxy = 0.7; 
+
+	    scalar t = this->db().time().value();
+
+ 	    forAll(Cf, faceI)
+            {
+                if ( 
+                   (Cf[faceI].z() > minz) &&
+                   (Cf[faceI].z() < maxz) &&
+                   (Cf[faceI].y() > miny) &&
+                   (Cf[faceI].y() < maxy) 
+                   )
+            	   {
+
+		       if ( t < 1.)
+		       {
+                           field[faceI] = 1.;
+		       }
+		       else
+		       {
+		           field[faceI] = 0.;
+		       }
+
+	    	       //field[faceI] = 1;
+	           }
+	    }
+   	#};         
+
+  	codeOptions
+  	#{
+       	    -I$(LIB_SRC)/finiteVolume/lnInclude \
+       	    -I$(LIB_SRC)/meshTools/lnInclude
+   	#};
+
+  	codeInclude
+   	#{
+      	    #include "fvCFD.H"
+      	    #include <cmath>
+     	    #include <iostream>
+	#};
+    }
+
+    rightWall
+    {
+        type            zeroGradient;
+    }
+
+    frontWall
+    {
+        type            zeroGradient;
+    }
+
+    backWall
+    {
+        type            zeroGradient;
+    }
+
+    bottomWall
+    {
+        type            zeroGradient;
+    }
+
+    top
+    {
+        type            inletOutlet;
+        inletValue      uniform 0;
+        value           uniform 0;
+    }
+}
+
+// ************************************************************************* //

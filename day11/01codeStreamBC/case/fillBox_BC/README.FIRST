@@ -1,0 +1,38 @@
+#How to run me:
+
+
+
+foamCleanTutorials
+
+blockMesh
+
+checkMesh
+
+rm -rf 0
+
+cp -r 0_org 0
+
+decomposePar
+
+mpirun -np 4 interFoam -parallel | tee log
+
+reconstructPar
+
+paraFoam
+
+
+
+#To plot with gnuplot
+set xlabel 'Time (s)'
+set ylabel 'Water volume integral (m^3)'
+plot [][0:0.05] 'postProcessing/water_in_domain/0/volRegion.dat' u 1:2 w l notitle
+
+
+
+
+#Note:
+Paraview stand alone or paraFoam -builtin do not handle codedFixedValue BC.
+If paraFoam give you an error that can't read the codedFixedValue BC, 
+convert the case to VTK,
+
+foamToVTK

@@ -1,0 +1,193 @@
+#+TITLE: Implementing boundary conditions using codeStream
+#+AUTHOR: A. Riedinger
+
+* CONTENTS :toc:
+- [[#about][ABOUT]]
+  - [[#how-codestream-works][HOW codeStream WORKS]]
+- [[#parabolic-inlet-profile][PARABOLIC INLET PROFILE]]
+  - [[#boundary-condition-u][BOUNDARY CONDITION U]]
+  - [[#running-the-case][RUNNING THE CASE]]
+- [[#paraboloid-inlet-profile][PARABOLOID INLET PROFILE]]
+
+* ABOUT
+There are many BC available in OpenFOAM, but from time to time it may happen that you do not find what you are looking for. For this reason, it is possible to implement *your own* boundary conditions. You have three options:
+
+ + Use =codeStream=.
+ + Use high level programming.
+ + Use an external library (e.g. =swak4foam=).
+
+=codeStream= is the simplest way to implement BC. If you cannot implement your BC using =codeStream=, you can use high level programmin, although it requires C++ and OpenFOAM API knowledge.
+
+Here we will work with =codeStream=, which will allow us to implement our own boundary conditions without going thru the hustle and bustle of high-level programming. The following topics will be adressed:
+
+ + Building blocks.
+ + Implementing BC using high-level programming.
+ + Modifying applications.
+ + Implementing an application from scratch.
+ + Adding the scalar transpor equations to icoFoam.
+
+** HOW codeStream WORKS
+OpenFOAM includes the capability to compile, load and execute C++ code at run-time. This capability is supported via the *directive* =codeStream=, that can be used in any input file for run-time compilation.
+
+This directive reads the entries =code= (compulsory), =codeInclude= (optional), =codeOptions= (optional) and =codeLibs= (optional); and uses them to generate the dynamic code.
+
+The source code and binaries are automatically generated and copied in the directory =dynamicCode= of the current case; and the source coe is compiled automatically at run-time.
+
+We will use here =codeStream= to implement new boundary conditions, but have in mind that it can be used in *any* dictionary.
+
+Here is an example describing each part of the directive for BC:
+
+[[file:images/body4BC.png]]
+* PARABOLIC INLET PROFILE
+The first step is identifying the patch, its location and dimensions. For this, you can use ParaView:
+
+[[file:images/patch.png]]
+
+We will use the following formula to implement the parabolic inlet profile:
+
+[[file:images/formulaParabolicInletProfile.png]]
+
+For this case, /c/ is the patch midpoint in the /y/ direction (/8/), /r/ is the patch radius (/8/) and /Umax/ is the maximum velocity. We should get a parabolic profile similar to this one:
+
+[[file:images/parabolicProfileFormulaResult.png]]
+
+** BOUNDARY CONDITION U
+:PROPERTIES:
+:header-args: :tangle case/2Delbow_UparabolicInlet/0/U
+:END:
+
+The =codeStream= BC will be implemented in the file [[file:case/2Delbow_UparabolicInlet/0/U]]. The code is as follows:
+
+#+begin_src c++
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    wall-4
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    velocity-inlet-5
+    {
+        type            fixedValue;
+        value           #codeStream
+        {
+            codeInclude
+            #{
+                #include "fvCFD.H"
+            #};
+
+            codeOptions
+            #{
+                -I$(LIB_SRC)/finiteVolume/lnInclude \
+                -I$(LIB_SRC)/meshTools/lnInclude
+            #};
+
+            codeLibs
+            #{
+                -lmeshTools \
+                -lfiniteVolume
+            #};
+
+            code
+            #{
+                const IOdictionary& d = static_cast<const IOdictionary&>
+                (
+                    dict.parent().parent()
+                );
+
+                const fvMesh& mesh = refCast<const fvMesh>(d.db());
+                const label id = mesh.boundary().findPatchID("velocity-inlet-5");
+                const fvPatch& patch = mesh.boundary()[id];
+
+                vectorField U(patch.size(), vector(0, 0, 0));
+
+                const scalar pi = constant::mathematical::pi;
+                const scalar U_0   = 2.;	//max vel
+                const scalar p_ctr = 8.;	//patch center
+                const scalar p_r   = 8.;	//patch radius
+
+                forAll(U, i)
+                {
+                    const scalar y = patch.Cf()[i][1];
+                    U[i] = vector(U_0*(1-(pow(y - p_ctr,2))/(p_r*p_r)), 0., 0.);
+                }
+
+                writeEntry(os, "", U);
+            #};
+        };
+    }
+
+    velocity-inlet-6
+    {
+        type            fixedValue;
+        value           uniform (0 3 0);
+    }
+
+    pressure-outlet-7
+    {
+        type            zeroGradient;
+    }
+
+    wall-8
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    frontAndBackPlanes
+    {
+        type            empty;
+    }
+}
+#+end_src
+
+The =codeStream= BC is implemented with the *patch-name* =velocity-inlet-5= inside the =boundaryField=. The =codeOptions=, =codeInclude= and =codeLibs= parts depend of what are you trying to do. You may need to add new files, options or libraries, buy for most cases they are always the same.
+
+In the =code= section, the fisrt =8= lines until =vectorField U= are always standard; they are used to acces boundary mesh information.
+
+ + The function =cons IOdictionary& d= is used to access the currecnt dictionary.
+ + =const fvMesh& mesh= is used to access the mesh database.
+ + =const label id= is used to get the label id (an intenger) of the patch *velocity-inlet-5* (notice that you need to give the name of the patch).
+ + =const fvPatch& patch= uses the label id of the patch to access finally the mesh information.
+
+Then, =vectorField U= initializes the vector field. The statement =patch.size()= gets the number of faces in the patch and the statement =vector(0,0,0)= initializes a zero vector field in the patch.
+
+After that, we declare a few constants needed for the implemention as =const scalar pi=, =const scalar U_0=, =const scalar p_ctr= and =const scalar p_r=.
+
+The =forAll= loop (equivalent to =for (int i=0; patch.size()<i; i++)=) is used to acess the boundary patch face centers and to assign the velocity profile values. Notice that =U= was previously initialized. We use =const scalar y = patch.Cf() [i][1]= to get the coordinates of the patch faces center and then we assign the velocity value =U[i]= to patch center faces.
+
+Finally, =writeEntry= is used to write the *U* values to the dictionary.
+** RUNNING THE CASE
+:PROPERTIES:
+:header-args: :tangle run_2Delbow_UparabolicInlet
+:END:
+
+In order to run the case, you can do:
+
+#+begin_src bash
+cd case/2Delbow_UparabolicInlet/
+foamCleanCase
+fluentMeshToFoam ../../meshAndGeometries/fluent_elbow2D_1/ascii.msh | tee log/fluentMeshToFoam.log
+checkMesh | tee log/checkMesh.log
+touch open.foam
+icoFoam | tee log/icoFoam.log
+#+end_src
+
+And we obtain something like this:
+
+[[file:images/paraview_parabolicInlet.png]]
+* PARABOLOID INLET PROFILE

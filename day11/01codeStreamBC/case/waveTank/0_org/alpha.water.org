@@ -1,0 +1,122 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      alpha;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+/*
+    left
+    {
+        type            codedFixedValue;
+        value           uniform 0;
+        redirectType    solitary_wave_alpha;
+
+        code
+        #{
+            const scalar d = 5.;
+            const scalar H = 2.;
+
+            const scalar t = this->db().time().timeOutputValue();
+
+            scalar c = sqrt(9.81*d*(1 + H/d));
+            scalar x0 = 3/sqrt(3./4.*H/pow(d, 3));
+            scalar X = sqrt(3./4.*H/pow(d, 3))*(x0 - c*t);
+            scalar sech2 = pow(1./cosh(X), 2);
+
+            scalarField f(patch().size(), 0.);
+
+            forAll(patch().Cf(), faceI)
+            {
+                const scalar y = patch().Cf()[faceI][1];
+
+                if (y <= d + H*sech2)
+                {
+                    f[faceI] = 1.;
+                }
+            }
+            operator==(f);
+        #};
+    }
+*/
+
+    left
+    {
+        type            codedFixedValue;
+        value           uniform 0;
+        name            wave_alpha;
+        code            
+        #{
+            const fvPatch& boundaryPatch = patch(); 
+            const vectorField& Cf = boundaryPatch.Cf(); 
+            scalarField& field = *this; 
+
+            field = patchInternalField(); 	//take value from initialization
+
+            const scalar l = 5.;
+            const scalar A = 0.1;
+            const scalar gs = 9.81;
+            const vector gv(0.,9.81,0);
+
+            const scalar t = this->db().time().timeOutputValue();
+
+            scalar k = 2.0*3.14159/l;
+            scalar w = sqrt(k*mag(gv));
+
+            forAll(Cf, faceI)
+            {
+                const scalar y = Cf[faceI].y();
+
+                if (y <= A*cos(-w*t)+0.5*k*A*A*cos(2*(-w*t)) )
+                {
+                    field[faceI] = 1.;
+                }
+            }
+        #};
+    }
+
+    right
+    {
+        //type            zeroGradient;
+
+        type            variableHeightFlowRate;
+        lowerBound      0;
+        upperBound      1;
+        value           $internalField;
+    }
+
+    top
+    {
+        type            inletOutlet;
+        inletValue      uniform 0;
+        value           uniform 0;
+    }
+
+    bottom
+    {
+        //type            zeroGradient;
+        type            slip;
+    }
+
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,30 @@
+#How to run me:
+
+
+
+foamCleanTutorials
+
+gmshToFoam ../../meshes_and_geometries/gmsh_elbow3d/geo.msh
+
+autoPatch 75 -overwrite
+
+createPatch -overwrite
+
+checkMesh
+
+renumberMesh -overwrite
+
+rm -rf 0 
+
+cp -r 0_org 0
+
+icoFoam | tee log
+
+paraFoam
+
+
+
+
+
+
+

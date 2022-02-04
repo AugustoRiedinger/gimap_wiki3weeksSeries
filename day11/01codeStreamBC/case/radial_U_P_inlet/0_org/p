@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+   
+    inlet
+    {
+        type            codedFixedValue;
+    	value           uniform 0;
+    	redirectType    parabolicProfile2;
+   
+	code
+    	#{
+            const fvPatch& boundaryPatch = patch(); 
+            const vectorField& Cf = boundaryPatch.Cf();
+            scalarField& field = *this; 
+
+            scalar RR=1;
+	    scalar R=0.5;
+
+ 	    forAll(Cf, faceI)
+            { 
+                RR=sqrt(pow(Cf[faceI].y(),2)+pow(Cf[faceI].x(),2));
+		field[faceI] = 1.0-pow((RR-0.75)/R,2); 
+	    }
+   	#};         
+
+  	codeOptions
+  	#{
+            -I$(LIB_SRC)/finiteVolume/lnInclude \
+            -I$(LIB_SRC)/meshTools/lnInclude
+   	#};
+
+  	codeInclude
+   	#{
+      	    #include "fvCFD.H"
+      	    #include <cmath>
+     	    #include <iostream>
+  	#}; 
+    }
+    
+    wall
+    {
+        type            zeroGradient;
+    } 
+}
+
+// ************************************************************************* //

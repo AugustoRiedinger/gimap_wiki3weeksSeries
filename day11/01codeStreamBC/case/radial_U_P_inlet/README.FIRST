@@ -1,0 +1,19 @@
+#How to run me:
+
+
+
+foamCleanTutorials
+
+ideasUnvToFoam ../../meshes_and_geometries/salome_annular_pipe/Mesh.unv
+
+rm -rf 0
+
+cp -r 0_org 0
+
+icoFoam | tee log
+
+paraFoam
+
+
+
+
