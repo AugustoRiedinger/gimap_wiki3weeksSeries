@@ -1,8 +1,8 @@
 /*---------------------------------------------------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2016 OpenFOAM Foundation
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Copyright (C) 2022 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -29,60 +29,80 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
+
+/*Solution control using PISO class:*/
 #include "pisoControl.H"
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
 {
+    /*Set directory structure:*/
     #include "setRootCase.H"
+    /*Create time (object runtime):*/
     #include "createTime.H"
+    /*Create time (object mesh):*/
     #include "createMesh.H"
-	#include "createFields.H"
-	#include "CourantNo.H"
+    /*Initialize fields:*/
+    #include "createFields.H"
+    /*Calculates and outputs the Courant Number:*/
+    #include "CourantNo.H"
+    /*Declare and initialize the cumulative continuity error:*/
     #include "initContinuityErrs.H"
 
+    /*Assign PISO controls to object mesh and create object PISO:*/
+    /*Alternatively, you can use the header file createControl.H.*/
     pisoControl piso(mesh);
 
-    Info<< "\nStarting time loop\n" << endl;
+    Info << "\nStarting time loop\n" << endl;
 
-	while (runTime.loop())
-	{
-        Info<< "Time = " << runTime.timeName() << nl << endl;
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+    /*Time loop:*/
+    while (runTime.loop()) {
+       Info << "Time = " << runTime.timeName() << nl << endl;
 
-  		#include "CourantNo.H"
+       /*Calculates and outputs the Courant Number:*/
+       #include "CourantNo.H"
 
-        while (piso.correct())
-        {
-        	while (piso.correctNonOrthogonal())
-        	{
-            	fvScalarMatrix TEqn
-            	(
-                	fvm::ddt(T)
-              		+ fvm::div(phi, T)
-              		- fvm::laplacian(DT, T)
-            	);
+       /*PISO options - correct loop:*/
+       while (piso.correct()) {
+           /*Non-orthogonal corrections loop:*/
+           while (piso.correctNonOrthogonal()) {
+               /*Create object TEqn - fvScalarMatrix is an instance of fvMatrix:*/
+               fvScalarMatrix TEqn
+               (
+                   /*Model equation - convection-diffusion.*/
+                   /*We need to create scalar field T, vector field U and constant DT.*/
+                   /*This variables will be declared in createFields.H.*/
+                   /*In fvSchemes, we will need to define how to compute differential operators for this.*/
+                   fvm::ddt(T)
+                   + fvm::div(phi,T)
+                   - fvm::laplacian(DT,T)
+               );
 
-            	TEqn.solve();
-        	}        	
-		}
+               /*Solve TEqn - this object holds the solution:*/
+               TEqn.solve();
+           }
+       }
 
-        #include "continuityErrs.H"
-        //#include "write.H"
-        runTime.write();
+       /*Compute the continuity errors:*/
+       #include "continuityErrs.H"
 
-	}
+       /*Write solution in runtime folder.*/
+       /*It'll write the data requested in the file createFields.H:*/
+       runTime.write();
+    }
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+    /*Write CPU time at the end of the time loop:*/
+    Info << nl << "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
+         << " ClockTime = " << runTime.elapsedClockTime() << " s"
+         << nl << endl;
 
-    Info<< nl << "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
-        << "  ClockTime = " << runTime.elapsedClockTime() << " s"
-        << nl << endl;
+    /*Output this message:*/
+    Info << "End\n" << endl;
 
-    Info<< "End\n" << endl;
-
+    /*End of the program (exit status):*/
     return 0;
 }
-
-
 // ************************************************************************* //
