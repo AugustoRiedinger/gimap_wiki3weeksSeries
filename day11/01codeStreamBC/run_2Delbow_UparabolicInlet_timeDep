@@ -1,0 +1,5 @@
+cd case/2Delbow_UparabolicInlet_timeDep/
+foamCleanCase
+mkdir log
+fluentMeshToFoam ../../meshesAndGeometries/fluent_elbow2d_1/ascii.msh | tee log/fluentMeshToFoam.log
+checkMesh | tee log/checkMesh.log

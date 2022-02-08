@@ -1,0 +1,109 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+//internalField   uniform (1 0 0);
+
+internalField   #codeStream
+{
+    codeInclude
+    #{
+        #include "fvCFD.H"
+    #};
+
+    codeOptions
+    #{
+        -I$(LIB_SRC)/finiteVolume/lnInclude \
+        -I$(LIB_SRC)/meshTools/lnInclude
+    #};
+
+    //libs needed to visualize BC in paraview
+    codeLibs
+    #{
+        -lmeshTools \
+		-lfiniteVolume
+    #};
+
+    code
+    #{
+        const IOdictionary& d = static_cast<const IOdictionary&>(dict);
+        const fvMesh& mesh = refCast<const fvMesh>(d.db());
+        vectorField U(mesh.nCells(), vector(0, 0, 0));
+
+        forAll(U, i)
+        {
+            const scalar x 	= mesh.C()[i][0];
+            const scalar a_d 	= 10.;			//incidence angle in deg
+            const scalar a_r 	= a_d*3.14159/180.;	//incidence angle in rad
+            const scalar U0 	= 1.;			//reference velocity
+		
+            U[i] = vector(1., 0., 0.);
+
+            if (x >= 0)
+            {
+                U[i] = vector(U0*cos(a_r), U0*sin(a_r), 0.);
+            }
+        }
+
+        writeEntry(os, "", U);
+    #};
+};
+
+boundaryField
+{
+    in
+    {
+        type            fixedValue;
+        value           uniform (1 0 0);
+    }
+
+    out
+    {
+		type		inletOutlet;
+		phi		phi;
+		inletValue	uniform (0 0 0);
+		value		uniform (1 0 0);
+    }
+
+    cylinder
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    sym1
+    {
+        type            symmetryPlane;
+    }
+
+    sym2
+    {
+        type            symmetryPlane;
+    }
+
+    back
+    {
+        type            empty;
+    }
+
+    front
+    {
+        type            empty;
+    }
+}
+
+// ************************************************************************* //

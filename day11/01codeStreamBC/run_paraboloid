@@ -1,0 +1,8 @@
+cd case/3Delbow_Uparaboloid/
+foamCleanCase
+gmshToFoam ../../meshAndGeometries/gmsh_elbow3d/geo.msh | tee log/gmshToFoam.log
+autoPatch 75 -overwrite
+createPatch -overwrite
+renumberMesh -overwrite
+touch open.foam
+icoFoam | tee log/icoFoam.log

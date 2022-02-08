@@ -1,0 +1,50 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volVectorField;
+    location    "4";
+    object      gradT;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 -1 0 1 0 0 0];
+
+internalField   nonuniform List<vector> 10((-3.9816719e-06 0 0) (-2.3918679e-05 0 0) (-0 -0 -0) (0.00032875004 0 0) (0.00079827732 0 0) (0.0062867305 0 0) (0.017873364 0 0) (0.23629565 0 0) (1.1573157 0 0) (-0 0 0));
+
+boundaryField
+{
+    inlet
+    {
+        type            extrapolatedCalculated;
+        value           uniform (-3.9816719e-06 0 0);
+    }
+    outlet
+    {
+        type            extrapolatedCalculated;
+        value           uniform (-24.99498 0 0);
+    }
+    bottom
+    {
+        type            extrapolatedCalculated;
+        value           nonuniform List<vector> 10((-3.9816719e-06 0 0) (-2.3918679e-05 0 0) (0 0 -0) (0.00032875004 0 0) (0.00079827732 0 0) (0.0062867305 0 0) (0.017873364 0 0) (0.23629565 0 0) (1.1573157 0 0) (0 0 0));
+    }
+    top
+    {
+        type            extrapolatedCalculated;
+        value           nonuniform List<vector> 10((-3.9816719e-06 0 0) (-2.3918679e-05 0 0) (0 0 0) (0.00032875004 0 0) (0.00079827732 0 0) (0.0062867305 0 0) (0.017873364 0 0) (0.23629565 0 0) (1.1573157 0 0) (0 0 0));
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+
+// ************************************************************************* //

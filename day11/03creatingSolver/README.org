@@ -1,0 +1,44 @@
+#+TITLE: Implementing an application from scratch
+
+* ABOUT
+We are going to implement a solver (and 3 variations) from scratch. For this is important to create the working directories in:
+
+#+begin_src bash
+cd $WM_PROJECT_USER_DIR/run
+#+end_src
+
+* scratchFoam
+To create the basic structure of a new application, type in the terminal:
+
+#+begin_src bash
+foamNewApp scratchFoam
+#+end_src
+
+The utility =foamNewApp= will create the directory structure and all the files needed to create the new application from scratch. The name of the application is =scratchFoam=.
+
+The =scratchFoam= directory contains the source code of the solver:
+ + =scratchFoam.C= contains the starting point to implement the new application.
+ + =createFields.H= is the file where we declare all the field variables and initialization of the solution.
+ + The =Make= directory contains instructions.
+   + =Make/files= names all the source files =.C=, it specifies the name of the solver and location of the output file.
+   + =Make/options= specifies directories to search for include files and libraries to link the solver against.
+ + To compile the new application, we can use the command =wmake=.
+
+The source file for this solver is in [[file:solvers/scratchFoam/scratchFoam.C]]; and also the headers file [[file:solvers/scratchFoam/createFields.H]].
+
+After editing both files, we can compile the code using =wmake=. Remember that you *MUST* be in the =$WM_PROJECT_USER_DIR/run= directory to edit and compile the application.
+
+Then, you can run the case inside [[01simpleScratchFoam]]:
+
+#+begin_src bash
+foamCleanCase
+blockMesh | tee log.blockMesh
+checkMesh | tee log.checkMesh
+scratchFoam | tee log.scratchFoam
+touch open.foam
+paraview open.foam &
+#+end_src
+
+The other two solvers are similar to this:
+ + =scratchFoamComplex= uses a non-uniform initialization of the field =T= in =createFields.H=.
+ + =scratchFoamComplexExplicit= computes the gradient divergence and Laplacian of =T= with =write.H=. This file must be included inside the solver file =scratchFoamComplexExplicit.C=. The dictionary =fvSchemes= was also edited to tell the solver how to do the interpolation of the term =div(grad(T))=.

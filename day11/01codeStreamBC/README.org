@@ -10,6 +10,8 @@
 - [[#paraboloid-inlet-profile][PARABOLOID INLET PROFILE]]
   - [[#u-boundary-condition][U BOUNDARY CONDITION]]
   - [[#running-the-case-1][RUNNING THE CASE]]
+- [[#codedfixedvalue-and-codedmixed-boundary-conditions][codedFixedValue AND codedMixed BOUNDARY CONDITIONS]]
+  - [[#parabolic-profile-using-codedfixedvalue][PARABOLIC PROFILE USING codedFixedValue]]
 
 * ABOUT
 There are many BC available in OpenFOAM, but from time to time it may happen that you do not find what you are looking for. For this reason, it is possible to implement *your own* boundary conditions. You have three options:
@@ -203,7 +205,7 @@ We will implement the following equation in the boundary patch =auto3=:
 
 ** U BOUNDARY CONDITION
 :PROPERTIES:
-:header-args: :tangle 3Delbow_Uparaboloid/0/U]
+:header-args: :tangle case/3Delbow_Uparaboloid/0/U
 :END:
 
 The =codeStream= BC in the body of the file [[file:case/3Delbow_Uparaboloid/0/U]] is as follows:
@@ -318,3 +320,127 @@ icoFoam | tee log/icoFoam.log
 We get something like this:
 
 [[file:images/paraboloid_results.png]]
+* codedFixedValue AND codedMixed BOUNDARY CONDITIONS
+The =codedFixedValue= and =codedMixed= BC are derived from =codeStream= and work in a similar way. They use friendlier notation and let you access more information of the simulation database.
+
+The source code and binaries are automatically generated and copied in the directory =dynamicCode= of the current case.
+
+Another feature of these BC is that the =code= section can be read from an external dictionary (=system/codeDict=), which is run-time modifiable.
+
+Let us now implement the parabolic profile using =codedFixedValue=.
+
+** PARABOLIC PROFILE USING codedFixedValue
+*** MODIFYING THE U BOUNDARY CONDITION
+:PROPERTIES:
+:header-args: :tangle case/2Delbow_UparabolicInlet_timeDep/0/U
+:END:
+The body of the =codedFixedValue= BC normally looks like this:
+
+[[file:images/codedFixedValue_body.png]]
+
+As in the previous cases, the only part that we need to change is the =code= block. We will se this in the U boundary condition located in [[case/2Delbow_UparabolicInlet_timeDep/0/U]] for the =velocity-inlet-5=:
+
+#+begin_src c++
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    wall-4
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    velocity-inlet-5
+    {
+        type            codedFixedValue;
+        value           uniform (0 0 0);
+        redirectType    parabolicProfile;
+
+        codeOptions
+        #{
+
+            -I$(LIB_SRC)/finiteVolume/lnInclude \
+            -I$(LIB_SRC)/meshTools/lnInclude
+        #};
+
+        codeInclude
+        #{
+            #include "fvCFD.H"
+            #include <cmath>
+            #include <iostream>
+        #};
+
+        code
+        #{
+            const fvPatch& boundaryPatch = patch();
+            const vectorField& Cf = boundaryPatch.Cf();
+            vectorField& field = *this;
+
+            scalar U_0 = 2, p_ctr = 8, p_r = 8;
+
+            scalar t = this->db().time().value();
+
+            forAll(Cf, faceI)
+            {
+                field[faceI] = vector(sin(t)*U_0*(1-(pow(Cf[faceI].y()-p_ctr,2))/(p_r*p_r)),0,0);
+            }
+        #};
+    }
+
+    velocity-inlet-6
+    {
+        type            fixedValue;
+        value           uniform (0 3 0);
+    }
+
+    pressure-outlet-7
+    {
+        type            zeroGradient;
+    }
+
+    wall-8
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    frontAndBackPlanes
+    {
+        type            empty;
+    }
+}
+#+end_src
+
+The first 3 lines of the =code= block are always standar, they give us access to mesh and field information in the patch. We store the coordinates of the faces center in the vector field =Cf=. And in this case, as we are going to implement a vector profile, we initialize a vector field where we are going to assign the profile (=field = *this=).
+
+After that standar code, we initialize a few constants that will be used in our implementation; such as =U_0=. And then, we use a =forAll= loop to access the boundary patch face centers and to assign the velocity profile values. The line =field[faceI]= is where we do the actual implementation of the boundary profile (similar to the =codeStream= case). The vector field was initialized in the line =field = *this=.
+
+So, is clear that the syntax and use of the =codedFixedValue= and =codedMixed= BC is much simpler than =codeStream=. The instructions shown here can be used a template; and in the end of the day you only need to modify the =code= section.
+
+One disadvantage though of these BC is that you cannot visualize the fields at time zero. You will need to run the simulations for at least one iteration. On the positive side, accessing time and other values from the simulation database is straighforward. This is, time can be accessed by adding the following statement =scalar t = this->db().time().value()=. This way, we can use time dependecy such as =sin(t)= in =field[faceI]=.
+*** RUNNING THE CASE
+:PROPERTIES:
+:header-args: :tangle run_2Delbow_UparabolicInlet_timeDep
+:END:
+
+To run the case, you can type:
+
+#+begin_src bash
+cd case/2Delbow_UparabolicInlet_timeDep/
+foamCleanCase
+mkdir log
+fluentMeshToFoam ../../meshesAndGeometries/fluent_elbow2d_1/ascii.msh | tee log/fluentMeshToFoam.log
+checkMesh | tee log/checkMesh.log
+#+end_src

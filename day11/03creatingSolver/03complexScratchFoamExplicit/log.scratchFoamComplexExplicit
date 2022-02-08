@@ -1,0 +1,644 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-c8374a4890ad
+Exec   : scratchFoamComplexExplicit
+Date   : Feb 08 2022
+Time   : 14:15:42
+Host   : "endeavouros"
+PID    : 400698
+I/O    : uncollated
+Case   : /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/03creatingSolver/03complexScratchFoamExplicit
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading field T
+
+Reading field U
+
+Reading transportProperties
+
+Reading diffusivity DT
+
+Reading/calculating face flux field phi
+
+Courant Number mean: 2.5 max: 2.5
+
+Starting time loop
+
+Time = 0.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.61643836, Final residual = 6.1388616e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.19785938, Final residual = 5.1910832e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.67231871, Final residual = 2.7210209e-16, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.30148944, Final residual = 2.8576676e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.38974073, Final residual = 3.0455532e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.18437286, Final residual = 6.9436587e-16, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.29727979, Final residual = 2.9400743e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.30492696, Final residual = 1.4439333e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.4117809, Final residual = 2.9242612e-16, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.16133719, Final residual = 2.8952398e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.33780992, Final residual = 7.4093177e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.083908145, Final residual = 5.5336346e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.39332262, Final residual = 1.7115161e-16, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.058129466, Final residual = 2.2735104e-16, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.21345391, Final residual = 3.8227491e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13846567, Final residual = 2.6494867e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 0.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.21174411, Final residual = 3.6388619e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.2150835, Final residual = 6.8183858e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.20799442, Final residual = 2.6141304e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.19975804, Final residual = 2.7044173e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.11217665, Final residual = 7.3890861e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14266894, Final residual = 5.7483281e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.14856774, Final residual = 1.6751988e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14720326, Final residual = 2.9588086e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.076201983, Final residual = 1.3829166e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.087332109, Final residual = 8.4305442e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1093847, Final residual = 7.6391195e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.11723638, Final residual = 2.2357396e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.10865581, Final residual = 2.65424e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.11930633, Final residual = 4.7100187e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12411451, Final residual = 7.3402412e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.1348953, Final residual = 2.2780803e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12494475, Final residual = 7.3367567e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13545685, Final residual = 4.4250133e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12505361, Final residual = 3.1710509e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13470219, Final residual = 2.9386094e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 1.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12303967, Final residual = 6.5543378e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.1336845, Final residual = 3.6065289e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12412358, Final residual = 3.9266007e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13412248, Final residual = 8.3011683e-20, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12345827, Final residual = 3.9172575e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13430579, Final residual = 9.9606963e-19, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12604676, Final residual = 3.3601542e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13911773, Final residual = 2.2058063e-19, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13777533, Final residual = 3.3692417e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15109788, Final residual = 3.0383668e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15508127, Final residual = 4.7497984e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.16233878, Final residual = 5.608543e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15669246, Final residual = 6.2629706e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.16279741, Final residual = 4.4472853e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15338565, Final residual = 7.3015738e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15034845, Final residual = 4.5437019e-19, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.10057488, Final residual = 1.7486647e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.10847004, Final residual = 8.4849175e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1149879, Final residual = 7.4995865e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12373322, Final residual = 9.6003024e-19, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 2.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.11798851, Final residual = 1.6912323e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12846784, Final residual = 2.9527574e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12418934, Final residual = 7.4299685e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13401466, Final residual = 8.029975e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12302326, Final residual = 9.3881234e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13379886, Final residual = 2.1894022e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12445629, Final residual = 5.5833263e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13405012, Final residual = 2.8713058e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12252755, Final residual = 3.1693748e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13376531, Final residual = 7.2037135e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12541358, Final residual = 3.1727939e-21, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13513142, Final residual = 6.5081771e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12169348, Final residual = 2.4715774e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.1346373, Final residual = 1.2018684e-19, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1293004, Final residual = 7.8526262e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13757413, Final residual = 1.340598e-23, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.11742147, Final residual = 1.8589824e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13057303, Final residual = 4.426996e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12993534, Final residual = 9.5154363e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13604776, Final residual = 4.4336721e-19, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 3.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.10499284, Final residual = 1.6497462e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.11822022, Final residual = 3.9080148e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12847695, Final residual = 3.6371727e-21, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13568156, Final residual = 3.0274554e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.10859295, Final residual = 4.1274389e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12241918, Final residual = 1.5294273e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13017444, Final residual = 2.592285e-19, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13645201, Final residual = 4.3037063e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.10550753, Final residual = 1.0348626e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.1195078, Final residual = 3.030633e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13000184, Final residual = 2.1331856e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13549337, Final residual = 1.0161493e-16, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.10189115, Final residual = 9.8358434e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.11456927, Final residual = 3.7400843e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12692791, Final residual = 7.5460821e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13402193, Final residual = 1.4969321e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1083725, Final residual = 4.6897704e-19, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12007394, Final residual = 6.0245756e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12558496, Final residual = 7.4699719e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13517247, Final residual = 2.1720716e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 4.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.11990845, Final residual = 3.400189e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13314515, Final residual = 3.4771942e-21, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1296948, Final residual = 3.1919261e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13718815, Final residual = 4.3483163e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.11334681, Final residual = 9.405909e-19, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12604404, Final residual = 7.3826857e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12851414, Final residual = 3.3502057e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13440948, Final residual = 1.4954425e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.10466551, Final residual = 4.8482318e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.11566576, Final residual = 1.5616127e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12376119, Final residual = 4.6696324e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.133735, Final residual = 4.3185353e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1208031, Final residual = 1.5678322e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13327822, Final residual = 3.0361401e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12790533, Final residual = 5.785366e-19, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13730299, Final residual = 1.6497762e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12257021, Final residual = 1.8158479e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13575833, Final residual = 1.9993066e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1295096, Final residual = 7.8511764e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13644281, Final residual = 2.9718738e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 5.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1125073, Final residual = 1.641164e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12310674, Final residual = 9.6539952e-19, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12432109, Final residual = 3.9179553e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13290572, Final residual = 1.6581952e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.11460347, Final residual = 1.548994e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12592825, Final residual = 5.2001258e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.12617561, Final residual = 3.1699067e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.13811415, Final residual = 2.9696311e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13360542, Final residual = 3.2596326e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14933411, Final residual = 2.9196919e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15719631, Final residual = 2.6294522e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.16304589, Final residual = 5.3785104e-20, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15450369, Final residual = 3.3637918e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.16146751, Final residual = 1.6007864e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15412533, Final residual = 1.5608376e-19, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15250646, Final residual = 1.4923581e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.11198882, Final residual = 9.6856788e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.12437947, Final residual = 2.3837333e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13755656, Final residual = 1.8937122e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14656503, Final residual = 1.5875186e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 6.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.14205171, Final residual = 5.7542512e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15281301, Final residual = 2.8459916e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15390315, Final residual = 7.2827917e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15878075, Final residual = 2.723939e-20, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.14617527, Final residual = 3.3509714e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15482881, Final residual = 4.4106686e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15172419, Final residual = 5.8745491e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15332145, Final residual = 4.2738789e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13075325, Final residual = 6.047292e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14365951, Final residual = 9.098192e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.14847445, Final residual = 1.8761819e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15338758, Final residual = 1.52275e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.14030919, Final residual = 4.8426454e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15138464, Final residual = 2.7944384e-20, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15282008, Final residual = 7.2909472e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15517203, Final residual = 5.9278708e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1352547, Final residual = 9.3835384e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14802231, Final residual = 3.4007008e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.1522972, Final residual = 7.328531e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15505421, Final residual = 7.3207644e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 7.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13665739, Final residual = 6.592206e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14923015, Final residual = 1.7692106e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15335632, Final residual = 1.9393253e-21, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15561603, Final residual = 1.5193783e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13603419, Final residual = 2.6503187e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14893056, Final residual = 3.2682418e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15353173, Final residual = 1.4529574e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15572857, Final residual = 4.2867245e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13609949, Final residual = 5.8943842e-19, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14901893, Final residual = 4.8588817e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15377002, Final residual = 1.8195399e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15590422, Final residual = 4.1927232e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13626594, Final residual = 6.4223261e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14912757, Final residual = 3.0498999e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15380974, Final residual = 3.3256912e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15588571, Final residual = 7.3619507e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13634327, Final residual = 4.6881311e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14929011, Final residual = 2.8720227e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15475387, Final residual = 1.4564779e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15667233, Final residual = 4.3620965e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 8.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13667453, Final residual = 9.2697858e-18, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14946295, Final residual = 2.2089414e-18, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15388619, Final residual = 1.4752723e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15638517, Final residual = 2.9889954e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.1
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13765857, Final residual = 8.1000268e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14966949, Final residual = 5.8611084e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.2
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15285341, Final residual = 2.1833729e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15501338, Final residual = 2.9023901e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.3
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13515755, Final residual = 4.3669309e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14822316, Final residual = 3.0481894e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.4
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15316801, Final residual = 8.0948899e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15558039, Final residual = 7.3613434e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.5
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13649309, Final residual = 6.8237472e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14918812, Final residual = 1.6329996e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.6
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15359441, Final residual = 4.7896549e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15576741, Final residual = 5.6659837e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.7
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13603523, Final residual = 5.8095064e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14891121, Final residual = 3.5816221e-21, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.8
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15358381, Final residual = 3.3633356e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15575568, Final residual = 1.6037063e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 9.9
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.13605473, Final residual = 5.6712371e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.14892197, Final residual = 4.5921064e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Time = 10
+
+Courant Number mean: 2.5 max: 2.5
+DILUPBiCG:  Solving for T, Initial residual = 0.15361238, Final residual = 1.8627809e-17, No Iterations 1
+DILUPBiCG:  Solving for T, Initial residual = 0.15577543, Final residual = 5.9329636e-17, No Iterations 1
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+
+ExecutionTime = 0.09 s ClockTime = 0 s
+
+End
+

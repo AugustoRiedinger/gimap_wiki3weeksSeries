@@ -1,10 +1,3 @@
-/*--------------------------------*- C++ -*----------------------------------*\
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  6                                     |
-|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
-|    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
@@ -12,7 +5,7 @@ FoamFile
     class       volVectorField;
     object      U;
 }
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 1 -1 0 0 0 0];
 
@@ -50,17 +43,17 @@ boundaryField
                 -I$(LIB_SRC)/meshTools/lnInclude
             #};
 
-    	    //libs needed to visualize BC in paraview
-    	    codeLibs
-    	    #{
-        	-lmeshTools \
-        	-lfiniteVolume
-    	    #};
+            //libs needed to visualize BC in paraview
+            codeLibs
+            #{
+                -lmeshTools \
+                -lfiniteVolume
+            #};
 
             code
             #{
                 const IOdictionary& d = static_cast<const IOdictionary&>
-				(
+                (
                     dict.parent().parent()
                 );
                 const fvMesh& mesh = refCast<const fvMesh>(d.db());
@@ -70,7 +63,7 @@ boundaryField
                 vectorField U(patch.size(), vector(0, 0, 0));
 
                 const scalar pi = constant::mathematical::pi;
-                const scalar s  = 0.5;	
+                const scalar s  = 0.5;
 
                 forAll(U, i)
                 {
@@ -78,7 +71,7 @@ boundaryField
                     const scalar y = patch.Cf()[i][1];
                     const scalar z = patch.Cf()[i][2];
 
-		            U[i] = vector(-1*(pow(z/s, 2) + pow((y-s)/s,2) - 1.0), 0, 0);
+                    U[i] = vector(-1*(pow(z/s, 2) + pow((y-s)/s,2) - 1.0), 0, 0);
                 }
 
                 writeEntry(os, "", U);
@@ -86,5 +79,3 @@ boundaryField
         };
     }
 }
-
-// ************************************************************************* //

@@ -1,0 +1,72 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default Euler;
+}
+
+gradSchemes
+{
+    default           Gauss linear;
+    //default         cellLimited Gauss linear 1;
+    //default         cellLimited leastSquares 1;
+    //default         cellLimited<cubic> 1.5 leastSquares 1;
+
+    //nHat                            Gauss linear;            
+    //nHat                            cellLimited<cubic> 1.5 leastSquares 0.333;     //Too aggresive limiter smears the interface
+
+/*
+    grad(pcorr)                         				Gauss linear;
+    grad(((1*alpha.phase1)+(0*alpha.phase1_0)))        	Gauss linear;
+    grad(U)                            					Gauss linear;
+    grad(p_rgh)                        					Gauss linear;
+    grad(rho)                            				Gauss linear;
+    grad(alpha.phase1)                    				Gauss linear;
+*/
+}
+
+divSchemes
+{
+/*
+    div(rhoPhi,U)   Gauss limitedLinearV 1;
+    div(phi,alpha)  Gauss vanLeer;
+    div(phirb,alpha) Gauss interfaceCompression;
+    div((muEff*dev(T(grad(U)))))  Gauss linear;
+*/
+    div(rhoPhi,U)  Gauss linearUpwindV grad(U);
+    div(phi,alpha)  Gauss vanLeer;
+    div(phirb,alpha) Gauss linear;
+    div((muEff*dev(T(grad(U))))) Gauss linear;
+    div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         corrected;
+}
+
+// ************************************************************************* //

@@ -1,0 +1,20 @@
+#How to run me:
+
+
+
+foamCleanTutorials
+
+blockMesh
+
+checkMesh
+
+rm -rf 0
+
+cp -rf 0_org 0
+
+#setFields
+
+icoFoam | tee log.icofoam
+
+paraFoam
+

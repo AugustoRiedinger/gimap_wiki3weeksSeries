@@ -1,0 +1,31 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-c8374a4890ad
+Exec   : icoFoam
+Date   : Feb 05 2022
+Time   : 16:41:12
+Host   : "endeavouros"
+PID    : 615428
+I/O    : uncollated
+Case   : /home/ariedinger/uni/gimap/openfoam/03wiki3weeksSeries/day11/01codeStreamBC/case/2Delbow_UparabolicInlet_timeDep
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading transportProperties
+
+Reading field p
+
+Reading field U
+

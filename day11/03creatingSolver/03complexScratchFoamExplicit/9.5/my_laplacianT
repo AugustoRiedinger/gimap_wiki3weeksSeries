@@ -1,0 +1,50 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    location    "9.5";
+    object      my_laplacianT;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 -2 0 1 0 0 0];
+
+internalField   nonuniform List<scalar> 10(3.924934e-06 -1.6155744e-05 0.001345131 0.0024705354 0.024766273 0.1045481 0.21430916 6.3913543 11.06629 -267.92138);
+
+boundaryField
+{
+    inlet
+    {
+        type            extrapolatedCalculated;
+        value           uniform 3.924934e-06;
+    }
+    outlet
+    {
+        type            extrapolatedCalculated;
+        value           uniform -267.92138;
+    }
+    bottom
+    {
+        type            extrapolatedCalculated;
+        value           nonuniform List<scalar> 10(3.924934e-06 -1.6155744e-05 0.001345131 0.0024705354 0.024766273 0.1045481 0.21430916 6.3913543 11.06629 -267.92138);
+    }
+    top
+    {
+        type            extrapolatedCalculated;
+        value           nonuniform List<scalar> 10(3.924934e-06 -1.6155744e-05 0.001345131 0.0024705354 0.024766273 0.1045481 0.21430916 6.3913543 11.06629 -267.92138);
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+
+// ************************************************************************* //
