@@ -1,0 +1,103 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      S1;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions       [0 0 0 1 0 0 0];
+
+internalField   uniform 300;
+
+boundaryField
+{
+    wall-4
+    {
+        type        fixedValue;
+        value       uniform 300;
+    }
+
+/*
+    velocity-inlet-5
+    {
+        type        fixedValue;
+        value       uniform 350;
+    }
+*/
+
+    velocity-inlet-5
+    {
+ 	type             codedFixedValue;
+    	value            uniform 0;
+    	redirectType     inletProfile;
+   
+	code
+    	#{
+            const fvPatch& boundaryPatch = patch(); 
+            const vectorField& Cf = boundaryPatch.Cf();
+            scalarField& field = *this; 
+
+            //scalar tmp=1;
+ 	    forAll(Cf, faceI)
+            { 
+
+		if (Cf[faceI].y() > 8.)
+		{
+		    field[faceI] = 300;
+	        }
+		else
+		{
+		    field[faceI] = 350;
+		}
+	    }
+   	#};         
+
+  	codeOptions
+  	#{
+
+            -I$(LIB_SRC)/finiteVolume/lnInclude \
+            -I$(LIB_SRC)/meshTools/lnInclude
+
+   	#};
+
+  	codeInclude
+   	#{
+      	    #include "fvCFD.H"
+      	    #include <cmath>
+     	    #include <iostream>
+  	#};
+    }
+
+    velocity-inlet-6
+    {
+        type        fixedValue;
+        value       uniform 400;
+    }
+
+    pressure-outlet-7
+    {
+        type            zeroGradient;
+    }
+
+    wall-8
+    {
+        type        fixedValue;
+        value       uniform 300;
+    }
+
+    frontAndBackPlanes
+    {
+        type            empty;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,15 @@
+#How to run me:
+
+
+
+#To clean the directory, this is optional
+
+foamCleanTutorials
+
+fluentMeshToFoam ../../meshes_and_geometries/fluent_elbow2d_1/ascii.msh
+
+checkMesh
+
+my_icoFoam | tee log
+
+paraFoam
