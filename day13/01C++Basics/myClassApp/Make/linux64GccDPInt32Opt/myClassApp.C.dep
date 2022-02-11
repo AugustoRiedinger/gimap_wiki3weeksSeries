@@ -1,0 +1,6 @@
+$(OBJECTS_DIR)/myClassApp.C.dep: \
+myClassApp.C \
+myClass.H \
+
+myClass.H :
+
